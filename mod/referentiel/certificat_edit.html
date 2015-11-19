@@ -1,0 +1,391 @@
+<?php // $Id: certificat_edit.html,v 1.0 2008/05/09 16:00:00 jfruitet Exp $
+/**
+ * This page defines the form to  edit an instance of referentiel_certificat
+ * It is used from /certificat.php.  The whole instance is available as $form.
+ *
+ * @author 
+ * @version $Id: certificat_edit.html,v 1.0 2008/05/09 16:00:00 jfruitet Exp $
+ * @package referentiel
+ **/
+// DEBUG
+// echo "<br />MODE : $mode\n";
+if (!empty($record) && !empty($course)){
+
+    if (isset($mode) && ($mode=="updatecertif")){
+
+        if (!isset($form->instance)) {
+            $form->instance = $referentiel->id;
+        }
+        if (!isset($form->courseid_id)) {
+            $form->courseid = $course->id;
+        }
+        if (!isset($form->sesskey)) {
+            $form->sesskey=sesskey();
+        }
+        if (!isset($form->modulename)) {
+            $form->modulename='referentiel';
+        }
+
+        $certificat_id=$record->id;
+        if (isset($record->synthese_certificat)){
+            $synthese_certificat = $record->synthese_certificat;
+        }
+        else{
+            $synthese_certificat = '';
+        }
+
+        $commentaire_certificat = $record->commentaire_certificat;
+        $competences_certificat = $record->competences_certificat;
+        $decision_jury = $record->decision_jury;
+        $decision_jury_old = $record->decision_jury;
+        $ref_referentiel = $record->ref_referentiel;
+
+        $userid = $record->userid;
+
+        $verrou = $record->verrou;
+        $dossier_ferme = $record->valide;
+        $evaluation = $record->evaluation;
+        
+        // MODIF JF mai 2011
+        if ($userid!=$USER->id) { // Eviter que l'étudiant soit son propre référent !
+            $teacherid = $USER->id; // ecraser le precedant referent
+        }
+        else {
+            $teacherid = $record->teacherid;
+        }
+
+        $date_decision = $record->date_decision;
+        if (($date_decision=="") || ($date_decision==0)){
+                $date_decision=time();
+        }
+        // les empreintes
+        $empreintes_certificat = referentiel_purge_dernier_separateur(referentiel_get_liste_empreintes_competence($referentiel->ref_referentiel), '/');
+
+        // affichage        
+        $user_info=referentiel_get_user_info($userid);
+        $teacher_info=referentiel_get_user_info($teacherid);
+        $date_decision_info=userdate($date_decision);
+
+
+        // filtres
+    // Valable pour Moodle 2.1 et Moodle 2.2
+    //if ($CFG->version < 2011120100) {
+        $context = context_module::instance($cm->id);
+    //} else {
+        // $context = context_module::instance($cm);
+    //}
+
+        $isteacher = has_capability('mod/referentiel:rate', $context);
+        $isauthor = has_capability('mod/referentiel:viewrate', $context) && !$isteacher;
+        $iseditor = has_capability('mod/referentiel:managecertif', $context);
+
+        if ($isteacher|| $iseditor){
+        // AFFICHER certificat
+?>
+
+<h3><?php  print_string('modifier_certificat','referentiel') ?></h3>
+<form name="form" method="post" action="<?php p("certificat.php?d=$referentiel->id&amp;select_acc=0&amp;mode=listcertif") ?>">
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="center">
+<b><?php  print_string('id','referentiel') ?></b> : <?php p($certificat_id) ?>
+<input type="hidden" name="certificat_id" value="<?php  p($certificat_id) ?>" />
+    </td>
+    <td align="center">
+<b><?php print_string('etudiant','referentiel') ?></b> : <?php p($user_info) ?>
+<input type="hidden" name="userid" value="<?php  p($userid) ?>" />
+    </td>
+    <td align="center">
+<b><?php print_string('referent','referentiel') ?></b> : <?php p($teacher_info) ?>
+<input type="hidden" name="teacherid" value="<?php  p($teacherid) ?>" />
+    </td>
+    <td align="center">
+<b><?php  print_string('date_decision','referentiel') ?></b> : <?php echo '<span class="small">'.$date_decision_info.'</span>'; ?>
+<input type="hidden" name="date_decision" value="<?php  p($date_decision) ?>" />
+    </td>
+</tr>
+</table>
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('competences_certificat','referentiel'); ?>:</b></td>
+    <td align="left">
+<?php
+echo referentiel_affiche_competences_certificat('/', ':', $competences_certificat, $empreintes_certificat);
+?>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('decision_jury','referentiel') ?>:</b>
+        </td>
+    <td align="left">
+
+
+<?php
+if (!empty($decision_jury)
+    || (($decision_jury!=get_string('decision_favorable','referentiel'))
+        && ($decision_jury!=get_string('decision_defavorable','referentiel'))
+        && ($decision_jury!=get_string('decision_differee','referentiel')))){
+        // boite de selection
+		echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_favorable','referentiel').'" />'.get_string('decision_favorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_defavorable','referentiel').'" />'.get_string('decision_defavorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_differee','referentiel').'" />'.get_string('decision_differee','referentiel')."\n";
+}
+else{
+    if ($decision_jury==get_string('decision_favorable','referentiel')){
+        // boite de selection
+		echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_favorable','referentiel').'" checked="checked" />'.get_string('decision_favorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_defavorable','referentiel').'" />'.get_string('decision_defavorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_differee','referentiel').'" />'.get_string('decision_differee','referentiel')."\n";
+	}
+    else if ($decision_jury==get_string('decision_defavorable','referentiel')){
+        // boite de selection
+		echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_favorable','referentiel').'" />'.get_string('decision_favorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_defavorable','referentiel').'" checked="checked" />'.get_string('decision_defavorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_differee','referentiel').'" />'.get_string('decision_differee','referentiel')."\n";
+	}
+    else if ($decision_jury==get_string('decision_differee','referentiel')){
+        // boite de selection
+		echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_favorable','referentiel').'" />'.get_string('decision_favorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_defavorable','referentiel').'" checked="checked" />'.get_string('decision_defavorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_differee','referentiel').'" checked="checked" />'.get_string('decision_differee','referentiel')."\n";
+    }
+    else {
+        // boite de selection
+		echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_favorable','referentiel').'" />'.get_string('decision_favorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_defavorable','referentiel').'" />'.get_string('decision_defavorable','referentiel')."\n";
+        echo '<input type="radio" name="decision_jury_sel" value="'.get_string('decision_differee','referentiel').'" />'.get_string('decision_differee','referentiel')."\n";
+	}
+}
+    echo '<br /><b>'.get_string('rediger_decision','referentiel').'</b><br />'."\n";
+?>
+
+    <input type="text" name="decision_jury" size="80" maxlength="80" value="<?php p($decision_jury); ?>" />
+    </td>
+</tr>
+<?php
+         if (isset($synthese_certificat)){
+                echo '<tr valign="top">
+    <td align="right">
+        <b>'.get_string('synthese_certificat','referentiel').':</b>
+        </td>
+    <td align="left">
+<textarea cols="60" rows="5" name="synthese_certificat">';
+    p($synthese_certificat);
+                echo '</textarea>
+    </td>
+</tr>
+';
+            }
+?>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('commentaire_certificat','referentiel') ?>:</b>
+        </td>
+    <td align="left">
+<textarea cols="60" rows="5" name="commentaire_certificat"><?php  p($commentaire_certificat) ?></textarea>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('certificat_verrou','referentiel') ?>:</b></td>
+    <td align="left">
+<?php
+        if (!isset($verrou) or ($verrou=="") or ($verrou==0)){
+                echo '<input type="radio" name="verrou" value="1" />'.get_string("yes").' &nbsp; <input type="radio" name="verrou" value="0" checked="checked" /> '.get_string("no")."\n";
+        }
+        else {
+                echo '<input type="radio" name="verrou" value="1" checked="checked" />'.get_string("yes").' &nbsp; <input type="radio" name="verrou" value="0" />'.get_string("no")."\n";
+        }
+?>
+</tr>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('filtre_valide','referentiel') ?>:</b></td>
+    <td align="left">
+<?php
+        if (!isset($dossier_ferme) or ($dossier_ferme=="") or ($dossier_ferme==0)){
+                echo '<input type="radio" name="valide" value="1" />'.get_string("dossier_ferme", "referentiel").' &nbsp; <input type="radio" name="valide" value="0" checked="checked" /> '.get_string("dossier_ouvert", "referentiel")."\n";
+        }
+        else {
+                echo '<input type="radio" name="valide" value="1" checked="checked" />'.get_string("dossier_ferme", "referentiel").' &nbsp; <input type="radio" name="valide" value="0" />'.get_string("dossier_ouvert", "referentiel")."\n";
+        }
+?>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+     <b><?php   print_string('notification_certificat','referentiel') ?> : </b>
+    </td>
+        <td align="left">
+
+<?php
+                echo '<input type="radio" name="mailnow" value="1" />'.get_string('yes').' &nbsp; <input type="radio" name="mailnow" value="0" checked="checked" />'.get_string('no').' &nbsp; &nbsp; '."\n";
+?>
+    </td>
+</tr>
+
+</table>
+<input type="hidden" name="select_acc" value="<?php echo $select_acc; ?>" />
+<input type="hidden" name="decision_jury_old" value="<?php p($decision_jury_old) ?>" />
+
+<input type="hidden" name="ref_referentiel" value="<?php  p($ref_referentiel) ?>" />
+<input type="hidden" name="competences_certificat" value="<?php  p($competences_certificat) ?>" />
+
+<input type="hidden" name="evaluation" value="<?php  p($evaluation) ?>" />
+
+<input type="hidden" name="mode" value="updatecertif" />
+<input type="hidden" name="action" value="modifier_certificat" />
+<!-- These hidden variables are always the same -->
+<input type="hidden" name="courseid"        value="<?php  p($form->courseid) ?>" />
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="modulename"    value="<?php  p($form->modulename) ?>" />
+<input type="hidden" name="instance"      value="<?php  p($form->instance) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+<input type="submit" name="delete" value="<?php  print_string("delete") ?>" />
+</form>
+
+
+<?php
+            }
+            else{ // etudiant
+?>
+
+<h3><?php
+echo get_string('saisie_synthese_certificat','referentiel'). ' '.$OUTPUT->help_icon('syntheseh', 'referentiel');
+?></h3>
+<form name="form" method="post" action="<?php p("certificat.php?d=$referentiel->id&amp;select_acc=0&amp;mode=listcertif") ?>">
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="center">
+<b><?php  print_string('id','referentiel') ?></b> : <?php p($certificat_id) ?>
+
+    </td>
+    <td align="center">
+<b><?php print_string('etudiant','referentiel') ?></b> : <?php p($user_info) ?>
+
+    </td>
+    <td align="center">
+<b><?php print_string('referent','referentiel') ?></b> : <?php p($teacher_info) ?>
+    </td>
+    <td align="center">
+<b><?php  print_string('date_decision','referentiel') ?></b> : <?php echo '<span class="small">'.$date_decision_info.'</span>'; ?>
+
+    </td>
+</tr>
+</table>
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('decision_jury','referentiel') ?>:</b>
+        </td>
+    <td align="left">
+<?php  p($decision_jury) ?>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('competences_certificat','referentiel'); ?>:</b></td>
+    <td align="left">
+<?php
+echo referentiel_affiche_competences_certificat('/', ':', $competences_certificat, $empreintes_certificat);
+?>
+    </td>
+</tr>
+<?php
+         if (isset($synthese_certificat)){
+                echo '<tr valign="top">
+    <td align="right">
+        <b>'.get_string('synthese_certificat','referentiel').':</b>
+        </td>
+    <td align="left">
+<textarea cols="60" rows="5" name="synthese_certificat">';
+                p($synthese_certificat);
+                echo '</textarea>
+    </td>
+</tr>
+';
+            }
+?>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('commentaire_certificat','referentiel') ?>:</b>
+        </td>
+    <td align="left">
+<?php  p(stripslashes($commentaire_certificat)) ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('certificat_verrou','referentiel') ?>:</b></td>
+    <td align="left">
+<?php
+        if (!isset($verrou) or ($verrou=="") or ($verrou==0)){
+            echo get_string("no")."\n";
+        }
+        else {
+            echo get_string("yes")."\n";
+        }
+?>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+        <b><?php  print_string('filtre_valide','referentiel') ?>:</b></td>
+    <td align="left">
+<?php
+        if (!isset($dossier_ferme) or ($dossier_ferme=="") or ($dossier_ferme==0)){
+            echo get_string("dossier_ferme", "referentiel")."\n";
+        }
+        else {
+            get_string("dossier_ouvert", "referentiel")."\n";
+        }
+?>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+     <b><?php   print_string('notification_certificat','referentiel') ?> : </b>
+    </td>
+        <td align="left">
+
+<?php
+                echo '<input type="radio" name="mailnow" value="1" />'.get_string('yes').' &nbsp; <input type="radio" name="mailnow" value="0" checked="checked" />'.get_string('no').' &nbsp; &nbsp; '."\n";
+?>
+    </td>
+</tr>
+
+</table>
+<input type="hidden" name="select_acc" value="<?php echo $select_acc; ?>" />
+<input type="hidden" name="commentaire_certificat" value="<?php echo $commentaire_certificat; ?>" />
+<input type="hidden" name="decision_jury_old" value="<?php p($decision_jury_old) ?>" />
+<input type="hidden" name="certificat_id" value="<?php  p($certificat_id) ?>" />
+<input type="hidden" name="userid" value="<?php  p($userid) ?>" />
+<input type="hidden" name="teacherid" value="<?php  p($teacherid) ?>" />
+<input type="hidden" name="date_decision" value="<?php  p($date_decision) ?>" />
+<input type="hidden" name="decision_jury" value="<?php  p($decision_jury) ?>" />
+<input type="hidden" name="verrou" value="<?php  p($verrou) ?>" />
+<input type="hidden" name="ref_referentiel" value="<?php  p($ref_referentiel) ?>" />
+<input type="hidden" name="competences_certificat" value="<?php  p($competences_certificat) ?>" />
+<input type="hidden" name="valide" value="<?php  p($dossier_ferme) ?>" />
+<input type="hidden" name="evaluation" value="<?php  p($evaluation) ?>" />
+
+<input type="hidden" name="mode" value="updatecertif" />
+<input type="hidden" name="action" value="modifier_certificat" />
+<!-- These hidden variables are always the same -->
+<input type="hidden" name="courseid"        value="<?php  p($form->courseid) ?>" />
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="modulename"    value="<?php  p($form->modulename) ?>" />
+<input type="hidden" name="instance"      value="<?php  p($form->instance) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+<input type="submit" name="delete" value="<?php  print_string("delete") ?>" />
+</form>
+
+
+
+<?php
+}
+}
+}

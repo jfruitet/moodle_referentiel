@@ -1,0 +1,119 @@
+<?php // $Id: mod.html,v 1.5 2006/10/07 12:28:57 gustav_delius Exp $
+/**
+ * This page defines the form to create or edit an instance of this module
+ * It is used from /course/mod.php.  The whole instance is available as $form.
+ *
+ * @author 
+ * @version $Id: mod.html,v 1.5 2006/10/07 12:28:57 gustav_delius Exp $
+ * @package referentiel
+ **/
+ if (isset($mode) && ($mode=="updateetablissement")){
+
+	// Charger les etablissements
+	// filtres
+    // Valable pour Moodle 2.1 et Moodle 2.2
+    //if ($CFG->version < 2011120100) {
+        $context = context_module::instance($cm->id);
+    //} else {
+        // $context = context_module::instance($cm);
+    //}
+
+	
+	$isteacher = has_capability('mod/referentiel:approve', $context);
+	$isauthor = has_capability('mod/referentiel:write', $context) && !$isteacher;
+	$iseditor = has_capability('mod/referentiel:writereferentiel', $context);	
+
+	if ($record_etab){
+		// DEBUG
+		// echo "<br/>DEBUG ::<br />\n";
+		// print_object($record);
+        $record_etab->num_etablissement = "INCONNU";
+        $record_etab->nom_etablissement = "INCONNU";
+        $record_etab->adresse_etablissement = "INCONNU";
+
+		$etablissement_id=$record_etab->id;
+		if ($record_etab->num_etablissement=='l_inconnu'){
+            $num_etablissement=get_string('l_inconnu', 'referentiel');
+        }
+		else{
+            $num_etablissement=$record_etab->num_etablissement;
+        }
+		if ($record_etab->nom_etablissement=='l_inconnu'){
+            $nom_etablissement=get_string('l_inconnu', 'referentiel');
+        }
+		else{
+            $nom_etablissement=$record_etab->nom_etablissement;
+        }
+
+        if ($record_etab->adresse_etablissement=='l_inconnu'){
+            $adresse_etablissement=get_string('l_inconnu', 'referentiel');
+        }
+		else{
+            $adresse_etablissement=$record_etab->adresse_etablissement;
+        }
+
+		// DEBUG
+		// echo "<br/>DEBUG ::<br />\n";
+		// print_object($record);
+
+		// AFFICHER etablissement
+?>
+
+<h3><?php  print_string('modifier_etablissement','referentiel') ?></h3>
+<form name="form" method="post" action="<?php p("etablissement.php?d=$referentiel->id") ?>">
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('num_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="num_etablissement" size="20" maxlength="20" value="<?php  p($num_etablissement) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('nom_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="nom_etablissement" size="40" maxlength="255" value="<?php  p($nom_etablissement) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('adresse_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="adresse_etablissement" size="60" maxlength="255" value="<?php  p($adresse_etablissement) ?>" />
+    </td>
+</tr>
+</table>
+
+<input type="hidden" name="etablissement_id" value="<?php  p($etablissement_id) ?>" />
+
+<input type="hidden" name="action" value="modifier_etablissement" />
+<!-- These hidden variables are always the same -->
+
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="mode"          value="<?php  p($mode) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+
+<input type="submit" name="delete" value="<?php  print_string("delete") ?>" />
+
+</form>	
+<?php
+		
+	}
+}
+else if (isset($mode) && ($mode=="deleteetablissement")){
+	/// Confirmer la suppression d'un enregistrement
+	if (!empty($etablissement_id)){
+        echo $OUTPUT->confirm(get_string('confirmdeleterecord','referentiel'),
+        $CFG->wwwroot.'/mod/referentiel/etablissement.php?d='.$referentiel->id.'&amp;delete='.$etablissement_id.'&confirm=1&amp;sesskey='.sesskey(),
+        $CFG->wwwroot.'/mod/referentiel/etablissement.php?d='.$referentiel->id);
+	}
+	else{
+		print_error(get_string('noetablissement','referentiel'), "etablissement.php?d=$referentiel->id&amp;mode=listetablissement");
+	}
+} 
+ 
+?>

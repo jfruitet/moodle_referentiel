@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<certification>
+  <!-- occurrence : 1  -->
+  <occurrence_name>Référentiel C2i2e - Version 2011</occurrence_name>
+  <occurrence_code_referentiel>C2i2e-2011</occurrence_code_referentiel>
+  <occurrence_description_referentiel>
+    <text>Certificat Informatique et Internet niveau 2 \"Enseignant\" version 2011</text>
+  </occurrence_description_referentiel>
+  <url_referentiel>http://www.enseignementsup-recherche.gouv.fr/pid20536/rubrique-bo.html?cid_bo=54844</url_referentiel>
+  <seuil_certificat>0</seuil_certificat>
+  <minima_certificat>1</minima_certificat>
+  <timemodified>1399749245</timemodified>
+  <nb_domaines>2</nb_domaines>
+  <liste_codes_competence>A.1-1/A.1-2/A.1-3/A.1-4/A.1-5/A.2-1/A.2-2/A.2-3/A.3-1/A.3-2/A.3-3/A.3-4/B.1-1/B.1-2/B.1-3/B.2-1/B.2-2/B.2-3/B.2-4/B.2-5/B.3-1/B.3-2/B.3-3/B.3-4/B.3-5/B.4-1/B.4-2/B.4-3/</liste_codes_competence>
+  <liste_empreintes_competence>1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/</liste_empreintes_competence>
+  <!-- instance : 1  -->
+  <id>1</id>
+  <name>Dossier de certification C2i2e</name>
+  <description_instance>
+    <text>&lt;p&gt;C2i2e&lt;/p&gt;</text>
+  </description_instance>
+  <label_domaine>Domain</label_domaine>
+  <label_competence>Skill</label_competence>
+  <label_item>Item</label_item>
+  <date_instance>1399749176</date_instance>
+  <course>2</course>
+  <ref_referentiel>1</ref_referentiel>
+  <visible>1</visible>
+  <!-- activite: 1  -->
+  <activite>
+    <id>1</id>
+    <type_activite>Test</type_activite>
+    <description_activite>
+      <text>Création d'une activité</text>
+    </description_activite>
+    <competences_activite>A.1-1/A.1-2/</competences_activite>
+    <commentaire_activite>
+      <text></text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>2</userid>
+    <lastname>USER</lastname>
+    <firstname>Admin</firstname>
+    <teacherid>0</teacherid>
+    <teacher_lastname></teacher_lastname>
+    <teacher_firstname></teacher_firstname>
+    <date_creation>1399802663</date_creation>
+    <date_modif_student>1430844089</date_modif_student>
+    <date_modif>0</date_modif>
+    <approved>0</approved>
+    <!-- document: 3  -->
+    <document>
+      <id>3</id>
+      <type_document>Ceciestuntest</type_document>
+      <description_document>
+        <text>Description</text>
+      </description_document>
+      <url_document>/35/mod_referentiel/document/3/groupes_incriptions.pdf</url_document>
+      <ref_activite>1</ref_activite>
+      <timestamp>1430844038</timestamp>
+    </document>
+    <!-- document: 4  -->
+    <document>
+      <id>4</id>
+      <type_document>PDF</type_document>
+      <description_document>
+        <text>Liste des groupes</text>
+      </description_document>
+      <url_document>/35/mod_referentiel/document/4/groupes_incriptions.pdf</url_document>
+      <ref_activite>1</ref_activite>
+      <timestamp>1430844089</timestamp>
+    </document>
+  </activite>
+  <!-- activite: 5  -->
+  <activite>
+    <id>5</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>3</userid>
+    <lastname>ARAIGNE</lastname>
+    <firstname>Alpha</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933645</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933645</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 6  -->
+  <activite>
+    <id>6</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>4</userid>
+    <lastname>BELIER</lastname>
+    <firstname>Beta</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933645</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933645</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 7  -->
+  <activite>
+    <id>7</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>5</userid>
+    <lastname>DROMADAIRE</lastname>
+    <firstname>Delta</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933645</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933645</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 8  -->
+  <activite>
+    <id>8</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>6</userid>
+    <lastname>ESPADON</lastname>
+    <firstname>Epsilon</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933646</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933646</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 9  -->
+  <activite>
+    <id>9</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>7</userid>
+    <lastname>GNOU</lastname>
+    <firstname>Gamma</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933646</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933646</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 10  -->
+  <activite>
+    <id>10</id>
+    <type_activite>[Tâche 2] Tâche asssignée</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (&lt;i&gt;Admin USER&lt;/i&gt;) : Juste pour vérifier le fonctionnement du cron]</text>
+    </description_activite>
+    <competences_activite>B.1-1/B.1-2/</competences_activite>
+    <commentaire_activite>
+      <text>Vous avez contribué au partage de documents.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>8</userid>
+    <lastname>LAMBDA</lastname>
+    <firstname>Etudiant</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1426933646</date_creation>
+    <date_modif_student>0</date_modif_student>
+    <date_modif>1426933646</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 4  -->
+  <activite>
+    <id>4</id>
+    <type_activite>Nouveau test de déclaration</type_activite>
+    <description_activite>
+      <text>Pour tester l'affichage</text>
+    </description_activite>
+    <competences_activite>A.3-4/B.1-1/</competences_activite>
+    <commentaire_activite>
+      <text></text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>8</userid>
+    <lastname>LAMBDA</lastname>
+    <firstname>Etudiant</firstname>
+    <teacherid>0</teacherid>
+    <teacher_lastname></teacher_lastname>
+    <teacher_firstname></teacher_firstname>
+    <date_creation>1426870691</date_creation>
+    <date_modif_student>1426872225</date_modif_student>
+    <date_modif>0</date_modif>
+    <approved>0</approved>
+  </activite>
+  <!-- activite: 3  -->
+  <activite>
+    <id>3</id>
+    <type_activite>[Tâche 1] Tâche test</type_activite>
+    <description_activite>
+      <text>[Réalisation demandée (Admin USER) : Evaluer les compétences élèves]||| Il n'y a pas d'évaluation collective du B2i dans l'établissement mais je m'engage à y participer si elle est mise en place.</text>
+    </description_activite>
+    <competences_activite>B.4-1/B.4-2/</competences_activite>
+    <commentaire_activite>
+      <text>Fournir la liste des compétences B2i mobilisées dan les activités pédagogiques</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>8</userid>
+    <lastname>LAMBDA</lastname>
+    <firstname>Etudiant</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1403353350</date_creation>
+    <date_modif_student>1403353585</date_modif_student>
+    <date_modif>1426870645</date_modif>
+    <approved>1</approved>
+  </activite>
+  <!-- activite: 2  -->
+  <activite>
+    <id>2</id>
+    <type_activite>Test création activité</type_activite>
+    <description_activite>
+      <text>J'utilise l'ENT de l'établissement.</text>
+    </description_activite>
+    <competences_activite>A.1-1/A.1-2/B.4-3/</competences_activite>
+    <commentaire_activite>
+      <text>OK.</text>
+    </commentaire_activite>
+    <ref_instance>1</ref_instance>
+    <ref_referentiel>1</ref_referentiel>
+    <ref_course>2</ref_course>
+    <userid>8</userid>
+    <lastname>LAMBDA</lastname>
+    <firstname>Etudiant</firstname>
+    <teacherid>2</teacherid>
+    <teacher_lastname>USER</teacher_lastname>
+    <teacher_firstname>Admin</teacher_firstname>
+    <date_creation>1399802747</date_creation>
+    <date_modif_student>1403353182</date_modif_student>
+    <date_modif>1426870628</date_modif>
+    <approved>1</approved>
+  </activite>
+</certification>

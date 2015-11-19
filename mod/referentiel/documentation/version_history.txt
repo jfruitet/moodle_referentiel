@@ -1,0 +1,92 @@
+Moodle module referentiel 
+Module Moodle - Référentiel / Skills repository - Documentation
+jean.fruitet@univ-nantes.fr
+2007/2015
+
+Type: Activity Module
+Requires: Moodle 2.2 or later
+Status: Contributed
+Maintainer(s): jean.fruitet@univ-nantes.fr
+
+L'éco-système Référentiel s'enrichit et se diversifie.
+- Le Bloc Référentiel permet d'importer, créer et modifier des occurrences de référentiels puis de les administrer.
+- Le Module Référentiel permet la déclaration des activités, des tâches et l'affichage des certificats.
+- Le Rapport Référentiel permet de suivre l'ensemble des occurrences et des instances installées sur le serveur.
+
+Cette architecture modifiée s'accompagne d'un allègement des sources et facilite la maintenance du module.
+
+Désormais la création d'occurrence de la déclaration de compétences se fait exclusivement dans le Bloc Référentiel.
+Il suffit qu'un bloc soit déclaré dans un cours du serveur pour accéder à l'ensemble des occurrences de référenteil du serveur,
+en importer ou en créer de nouveaux.
+
+
+Installation des briques constituant l'application Référentiel de Moodle
+
+    Installer d'abord (ou mettre à jour) le module Référentiel dans le dossier
+    ./mod/
+    Installer ensuite le bloc Référentiel dans le dossier
+    ./blocks/
+    Pour terminer installer le rapport Référentiel dans le dossier
+    ./report/
+
+Consultez la documentation détaillée :
+http://moodlemoot2012.unimes.fr/course/view.php?id=33
+
+
+
+---------------------------------------------------------
+Historique des versions 
+---------------------------------------------------------
+Ceci est la partie activité du module Référentiel
+This is the activity module for Referentiel plugin
+
+Référentiel pour Moodle 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 avec barèmes
+Referentiel for Moodle 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 with scales support
+---------------------------------------------
+Version 10.1 for Moodle 2.7, 2.8, 2.9 with scale support, block and report
+Release 2015-07-06
+SQL syntax PostGres
+
+Version 10.05 for Moodle 2.7, 2.8 with scale support, block and report
+Release 2014-11-15
+New pagination display for activities
+New event log classes
+
+Version 10.01 (2014050400) for Moodle 2.7 with scale support, block and report
+Release 2014-06-20
+Modification de la gestion des évaluations avec bareme pour les tâches
+Release 2014-05-09
+Version 10.01 (2014050400) for Moodle 2.6 with scale support, block and report - Release 2014-05-04
+Correction d'un bug empêchant le paramétrage
+
+Version 10.00 (2014022803) for Moodle 2.4 et 2.5 with scale support and block
+
+Release 2014-04-25
+Correction bug empêchant la suppression d'un document attaché
+Suppression des caractères accentués dans les noms des fichiers d'archives
+Release 2014-04-10
+Correction d'un bug dans l'affichage des activités
+Release 2014-04-09
+Pagination de l'affichage des activités
+
+Version 10.00 (2014021500) for Moodle 2.4 et 2.5 with scales support and block
+Release 2014-03-24
+Correction bug dans la modifcation globale des activités
+Release 2014-02-27
+Lancaster assign mahara plugin support  (uses MNET connextion to Mahara)
+Release 2014-02-26
+Assign plugin support
+Portland assign mahara plugin support (uses MNET connextion to Mahara)
+
+Release 2013-02-17
+Amélioration de l'affichage si le bloc Référentiel n'est pas installé.
+
+Release 2013-02-15
+Version simplifiée.
+Suppression de l'éditeur wyiwyg pour les référentiel simplifiés
+La définition / modification des occurrences de référentiel s'appuie exclusivement sur le block référentiel
+Simplified version.
+No more wyiswyg editor for skills repository occurrence
+Referential Occurrence definition and  modification use the referentiel's block
+
+

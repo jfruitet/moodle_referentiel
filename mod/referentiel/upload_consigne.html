@@ -1,0 +1,166 @@
+<?php
+/* ******************CHARGER UN FICHIER **********************/
+
+/// Upload records section.
+if (isset($record) && $record){ // record task 
+	if (isset($record_consigne) && ($record_consigne)){
+		$consigne_id=$record_consigne->id;
+		$type_consigne = stripslashes($record_consigne->type_consigne);
+		$description_consigne = stripslashes($record_consigne->description_consigne);
+		$url_consigne = stripslashes($record_consigne->url_consigne);
+		$ref_task = $record_consigne->ref_task;	
+		$task_id = $record_consigne->ref_task;		
+		$cible_consigne = $record_consigne->cible_consigne; // fenêtre cible
+		$etiquette_consigne = $record_consigne->etiquette_consigne; // etiquette
+			
+	}
+	else{
+		// AJOUTER un consigne
+		$consigne_id=0;
+		$type_consigne = '';
+		$description_consigne = '';
+		$url_consigne = '';
+		$ref_task = $record->id;
+		$task_id = $record->id;		
+		$cible_consigne = 1; // fenêtre cible
+		$etiquette_consigne = ''; // etiquette
+		
+	}
+?>
+<form id="form" enctype="multipart/form-data" method="post" 
+	action="<?php p("upload_consigne.php?d=$referentiel->id") ?>">
+<table align="center" bgcolor="#ffffdd">
+<tr valign="top" bgcolor="#dddddd">
+    <td align="right">
+<b><?php  print_string('type_consigne','referentiel')?></b>
+<br />
+<i><span class="small"><?php print_string('extensions_document','referentiel'); ?></span></i>
+	</td>
+    <td align="left">
+<input type="text" name="type_consigne" size="20" maxlength="20" value="<?php  p($type_consigne) ?>" />
+    </td>
+</tr>	
+
+<tr valign="top" bgcolor="#dddddd">
+    <td align="center" colspan="2">
+	<b><?php  print_string('description','referentiel') ?></b>
+	<br />
+<textarea cols="60" rows="2" name="description_consigne"><?php  p($description_consigne) ?></textarea>
+    </td>
+</tr>
+<tr valign="top">
+<td align="right">
+	<b><?php  print_string('web_link','referentiel') ?></b>
+</td>
+<td align="left">
+<?php 
+		helpbutton('consigne', 'depot_consigne', 'referentiel');
+?>
+</td></tr>
+
+<?php	
+	echo '<tr valign="top"><td align="right">'.get_string('url','referentiel').'</td><td align="left">
+<input type="text" name="url_consigne" size="70" maxlength="255" value="'.$url_consigne.'" /></td></tr>'."\n";
+	echo '<tr valign="top"><td align="right">'. get_string('etiquette_consigne','referentiel').'</td><td align="left">
+<input type="text" name="etiquette_consigne" size="55" maxlength="255" value="'.$etiquette_consigne.'" /></td></tr>'."\n";
+	echo '<tr valign="top"><td align="right">'. get_string('cible_link','referentiel').'</td><td align="left">'."\n";
+	if ($cible_consigne){
+		echo ' <input type="radio" name="cible_consigne" value="1" checked="checked" />'.get_string('yes').'
+<input type="radio" name="cible_consigne" value="0" />'.get_string('no')."\n";
+	}
+	else{
+		echo ' <input type="radio" name="cible_consigne" value="1" />'.get_string('yes').'
+<input type="radio" name="cible_consigne" value="0" checked="checked" />'.get_string('no')."\n";
+	}
+	echo '</td></tr>'."\n";
+?>
+<tr valign="top">
+<td align="center" colspan="2">
+<input type="submit" name="url" value="<?php  print_string("savechanges") ?>" />
+    </td>
+</tr>
+<tr valign="top" bgcolor="#aaaaff">
+<td align="right" width="50%">
+<b>
+<?php 
+p($txt->importfileupload); 
+?> 
+</b>
+</td>
+<td align="left">
+<?php	
+	helpbutton('consigne', 'depot_consigne', 'referentiel');
+?>
+</td>
+</tr>
+<tr valign="top" bgcolor="#aaaaff">
+<td align="center" colspan="2">
+<?php 
+upload_print_form_fragment(1,array('newfile'),null,false,null,$course->maxbytes,0,false); 
+?>
+</td>
+</tr>
+<tr valign="top" bgcolor="#aaaaff">
+<td align="center" colspan="2">
+<input type="submit" name="save" value="<?php p($txt->uploadthisfile); ?>" />
+</td>
+</tr>
+<?php		
+
+	if (has_capability('moodle/course:managefiles', $contextcourse))
+		&& has_capability('mod/referentiel:import', $context)) {
+		// teacher 		
+?>	
+<tr valign="top"  bgcolor="#aaffaa">
+<td align="right" width="50%">
+<b>
+<?php 		
+		p($txt->importfilearea); 
+?>
+</b>
+</td><td align="left">
+<?php 
+		helpbutton('consigne', 'depot_consigne', 'referentiel');
+?>
+</td>
+</tr>
+<tr valign="top" bgcolor="#aaffaa">
+<td align="center" colspan="2">
+<input type="text" name="choosefile" size="50" />
+<?php  
+button_to_popup_window ("/files/index.php?id={$course->id}&choose=form.choosefile", 
+                        "coursefiles", $txt->choosefile, 500, 750, $txt->choosefile); 
+?>
+</td>
+</tr>
+<tr valign="top">	
+<td align="center" colspan="2"  bgcolor="#aaffaa">
+<input type="submit" name="save" value="<?php p($txt->importfromthisfile); ?>" /></td>
+</tr>
+<?php 
+	}
+?>
+<tr valign="top" bgcolor="#ffaaaa">
+<td align="center" colspan="2">
+<input type="submit" name="cancel" value="Quitter" />
+</td>
+</tr>
+
+</table>
+<!--
+<input type="hidden" name="type_consigne"  value="<?php  p($type_consigne) ?>" />
+<input type="hidden" name="url_consigne" value="<?php  p($url_consigne) ?>" />
+<input type="hidden" name="description_consigne" value="<?php  p($description_consigne)?>" />
+-->
+	<input type="hidden" name="newconsigne" value="1" />
+    <input type="hidden" name="sesskey" value="<?php p(sesskey()); ?>" />
+	<input type="hidden" name="courseid" value="<?php p($course->id) ?>" />
+    <input type="hidden" name="task_id" value="<?php p($task_id) ?>" />	
+	<input type="hidden" name="consigne_id" value="<?php p($consigne_id) ?>" />		
+	<input type="hidden" name="ref_task" value="<?php  p($task_id) ?>" />
+	<input type="hidden" name="action" value="modifier_consigne" />
+	<input type="hidden" name="mode" value="<?php  p($mode) ?>" />
+	</form>
+<?php
+}
+?>

@@ -1,0 +1,39 @@
+
+
+
+
+class Pedagogie{
+    var id;
+    var userid;
+    var refrefid;
+    var promotion;
+    var datedeb; // aaaa-mm-dd HH:ii:ss
+    var datefin;
+    var timemodified;
+    var formation;
+    var pedagogie;
+    var site;
+    
+    function Pedagogie($rec){
+        $this->id       = $rec->id ;
+        $this->userid       = $rec->userid ;
+        $this->refrefid     = $rec->refrefid ;
+        $this->promotion    = $rec->promotion ;
+        $this->datedeb      = $rec->datedeb ; // aaaa-mm-dd HH:ii:ss
+        $this->datefin      = $rec->datefin ;
+        $this->timemodified = $rec->timemodified ;
+        $this->formation    = $rec->formation;
+        $this->pedagogie    = $rec->pedagogie;
+        $this->site         = $rec->site;
+    }
+    
+
+    function ajoute_date($givendate,$sec=0, $min=0, $heu=0, $day=0,$mth=0,$yr=0) {
+        $cd = strtotime($givendate);
+        $newdate = date('Y/m/d H:i:s', mktime(date('H',$cd)+$heu,
+            date('i',$cd)+$min, date('s',$cd)+$sec, date('m',$cd)+$mth,
+            date('d',$cd)+$day, date('Y',$cd)+$yr));
+        return $newdate;
+    }  
+
+}

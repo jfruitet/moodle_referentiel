@@ -1,0 +1,355 @@
+<?php // $Id: mod.html,v 1.5 2006/10/07 12:28:57 gustav_delius Exp $
+/**
+ * This page defines the form to create or edit an instance of this module
+ * It is used from /course/mod.php.  The whole instance is available as $form.
+ *
+ * @author jf <jean.fruitet@univ-nantes.fr>
+ * @version $Id: pedagogie.html,v 0.1 2011/02/25 15:12:00 jf Exp $
+ * @package referentiel
+ **/
+ 
+
+// DEBUG
+
+// echo "<br />MODE : $mode\n";
+if (isset($mode) && ($mode=="addpedago")){
+	// ajouter un pedago
+	if (date("m")>7){
+        $promo=date("Y")+1;
+    }
+    else{
+        $promo=date("Y");
+    }
+	if (!isset($form->date_cloture)){
+		$form->date_cloture = $promo."-06-01";
+	}
+	if (!isset($form->promotion)){
+		$form->promotion = $promo;
+	}
+	if (!isset($form->formation)){
+		$form->formation = "";
+	}
+	if (!isset($form->pedagogie)){
+		$form->pedagogie = "";
+	}
+	if (!isset($form->composante)){
+		$form->composante = "";
+	}
+	if (!isset($form->num_groupe)){
+		$form->num_groupe = '';
+	}
+	if (!isset($form->commentaire)){
+		$form->commentaire = "";
+	}
+?>
+<h3 align="center"><?php  print_string('creer_pedago','referentiel') ?></h3>
+<form name="form" method="post" action="<?php p("pedagogie.php?d=$referentiel->id") ?>">
+<table align="center" cellpadding="5">
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('date_cloture','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="date_cloture" size="20" maxlength="20" value="<?php  p($form->date_cloture) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('promotion','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="promotion" size="4" maxlength="4" value="<?php  p($form->promotion) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('formation','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="formation" size="40" maxlength="40" value="<?php  p($form->formation) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('pedagogie','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="pedagogie" size="40" maxlength="40" value="<?php  p($form->pedagogie) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('composante','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="composante" size="40" maxlength="40" value="<?php  p($form->composante) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('num_groupe','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="num_groupe" size="20" maxlength="20" value="<?php  p($form->num_groupe) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('commentaire','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="commentaire" size="60" maxlength="255" value="<?php  p($form->commentaire) ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td align="center" colspan="2">
+<!-- These hidden variables are always the same -->
+<input type="hidden" name="courseid"        value="<?php  p($course->id) ?>" />
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="mode"          value="<?php  p($mode) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+</tr>
+</table>
+</form>
+
+
+<?php
+}
+else if (isset($mode) && ($mode=="updatepedago")){
+	// Charger les pedagos
+	// filtres
+    // Valable pour Moodle 2.1 et Moodle 2.2
+    //if ($CFG->version < 2011120100) {
+        $context = context_module::instance($cm->id);
+    //} else {
+        // $context = context_module::instance($cm);
+    //}
+
+	$isteacher = has_capability('mod/referentiel:approve', $context);
+	$isauthor = has_capability('mod/referentiel:write', $context) && !$isteacher;
+	$iseditor = has_capability('mod/referentiel:writereferentiel', $context);
+
+    if ($pedago_id) { // id pedago
+        $record=referentiel_get_pedagogie($pedago_id);
+        if ($record) {
+            if ($isteacher or $iseditor ){
+                $pedago_id=$record->id;
+                $num_groupe=$record->num_groupe;
+			    $date_cloture=$record->date_cloture;
+                $promotion=$record->promotion;
+                $formation=$record->formation;
+                $pedagogie=$record->pedagogie;
+                $composante=$record->composante;
+                $commentaire=$record->commentaire;
+			// AFFICHER pedago
+?>
+
+<h3 align="center"><?php  print_string('modifier_pedago','referentiel'," $pedago_id") ?></h3>
+<form name="form" method="post" action="<?php p("pedagogie.php?d=$referentiel->id") ?>">
+<table align="center" cellpadding="5">
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('date_cloture','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="date_cloture" size="20" maxlength="20" value="<?php  p($date_cloture) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('promotion','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="promotion" size="4" maxlength="4" value="<?php  p($promotion) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('formation','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="formation" size="40" maxlength="40" value="<?php  p($formation) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('pedagogie','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="pedagogie" size="40" maxlength="40" value="<?php  p($pedagogie) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('composante','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="composante" size="40" maxlength="40" value="<?php  p($composante) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('num_groupe','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="num_groupe" size="20" maxlength="20" value="<?php  p($num_groupe) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('commentaire','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="commentaire" size="60" maxlength="255" value="<?php  p($commentaire) ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td align="center" colspan="2">
+<input type="hidden" name="pedago_id" value="<?php  p($pedago_id) ?>" />
+
+<input type="hidden" name="action" value="modifier_pedago" />
+<!-- These hidden variables are always the same -->
+<input type="hidden" name="courseid"        value="<?php  p($course->id) ?>" />
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="mode"          value="<?php  p($mode) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+<input type="submit" name="delete" value="<?php  print_string("delete") ?>" />
+</tr>
+</table>
+</form>
+<?php
+            }
+        }
+    }
+    else{   // pas de pedagogie designee
+        if ($isteacher or $iseditor){
+            $records_pedago=referentiel_get_pedagogies();
+            if (!$records_pedago){
+	           print_error(get_string('nopedago','referentiel'), "$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&amp;mode=listpedago");
+            }
+            else if ($records_pedago){
+                foreach ($records_pedago as $record){
+                    $pedago_id=$record->id;
+                    $num_groupe=$record->num_groupe;
+                    $date_cloture=$record->date_cloture;
+                    $promotion=$record->promotion;
+                    $formation=$record->formation;
+                    $pedagogie=$record->pedagogie;
+                    $composante=$record->composante;
+                // AFFICHER pedago
+?>
+
+<h3><?php  print_string('modifier_pedago','referentiel') ?></h3>
+<form name="form" method="post" action="<?php p("pedagogie.php?d=$referentiel->id") ?>">
+<table align="center" cellpadding="5">
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('date_cloture','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="date_cloture" size="20" maxlength="20" value="<?php  p($date_cloture) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('promotion','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="promotion" size="4" maxlength="4" value="<?php  p($promotion) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('formation','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="formation" size="40" maxlength="40" value="<?php  p($formation) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('pedagogie','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="pedagogie" size="40" maxlength="40" value="<?php  p($pedagogie) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('composante','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="composante" size="40" maxlength="40" value="<?php  p($composante) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('num_groupe','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="num_groupe" size="20" maxlength=20" value="<?php  p($num_groupe) ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td align="center" colspan="2">
+<input type="hidden" name="pedago_id" value="<?php  p($pedago_id) ?>" />
+<input type="hidden" name="action" value="modifier_pedago" />
+<!-- These hidden variables are always the same -->
+<input type="hidden" name="courseid"        value="<?php  p($course->id) ?>" />
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="mode"          value="<?php  p($mode) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+
+<input type="submit" name="delete" value="<?php  print_string("delete") ?>" />
+
+</tr>
+</table>
+
+
+</form>	
+<?php
+		          }
+                }
+            }
+        }
+}
+else if (isset($mode) && ($mode=="deletepedago")){
+	/// Confirmer la suppression d'un enregistrement
+    if (!empty($pedago_id)){
+        echo $OUTPUT->confirm(get_string('confirmdeleterecord','referentiel'),
+		"$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&delete=$pedago_id&confirm=1&amp;sesskey=".sesskey(),
+        "$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&delete=$pedago_id&confirm=0&amp;sesskey=".sesskey());
+    }
+    else{
+	    print_error(get_string('nopedago','referentiel'), "$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&amp;mode=listpedago");
+    }
+} 
+
+// ####################### ASSOCIATIONS
+else if (isset($mode) && ($mode=="editeasso")){
+
+}
+else if (isset($mode) && ($mode=="deleteasso")){
+	/// Confirmer la suppression d'un enregistrement  associant un utilisateur et une pedagogie
+    if (!$pedago_id) { // id pedago
+        if ($userid){
+            $record=referentiel_get_pedagogie_user($userid, $referentiel->ref_referentiel);
+            if ($record) {
+                $pedago_id=$record->id;
+            }
+        }
+    }
+    if (!empty($pedago_id) && !empty($userid)){
+        echo $OUTPUT->confirm(get_string('confirmdeleterecord','referentiel'),
+		"$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&deleteasso=$pedago_id&amp;userid=$userid&confirm=1&amp;sesskey=".sesskey(),
+        "$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&deleteasso=$pedago_id&amp;userid=$userid&confirm=0&amp;sesskey=".sesskey());
+    }
+    else{
+	    print_error(get_string('nopedago','referentiel'), "$CFG->wwwroot/mod/referentiel/pedagogie.php?d=$referentiel->id&amp;mode=listpedago");
+    }
+}
+
+?>

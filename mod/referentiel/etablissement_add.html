@@ -1,0 +1,71 @@
+<?php // $Id: mod.html,v 1.5 2006/10/07 12:28:57 gustav_delius Exp $
+/**
+ * This page defines the form to create or edit an instance of this module
+ * It is used from /course/mod.php.  The whole instance is available as $form.
+ *
+ * @author 
+ * @version $Id: mod.html,v 1.5 2006/10/07 12:28:57 gustav_delius Exp $
+ * @package referentiel
+ **/
+
+	// Nouvel etablissement
+	// filtres
+    // Valable pour Moodle 2.1 et Moodle 2.2
+    //if ($CFG->version < 2011120100) {
+        $context = context_module::instance($cm->id);
+    //} else {
+        // $context = context_module::instance($cm);
+    //}
+
+	
+	$isteacher = has_capability('mod/referentiel:approve', $context);
+	$isauthor = has_capability('mod/referentiel:write', $context) && !$isteacher;
+	$iseditor = has_capability('mod/referentiel:writereferentiel', $context);	
+
+	$form->num_etablissement = get_string('l_inconnu', 'referentiel');
+	$form->nom_etablissement = get_string('l_inconnu', 'referentiel');
+	$form->adresse_etablissement = get_string('l_inconnu', 'referentiel');
+
+?>
+
+<h3><?php  print_string('modifier_etablissement','referentiel') ?></h3>
+<form name="form" method="post" action="<?php p("etablissement.php?id=$cm->id") ?>">
+<table cellpadding="5" width="80%">
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('num_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="num_etablissement" size="20" maxlength="20" value="<?php  p($form->num_etablissement) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('nom_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+<input type="text" name="nom_etablissement" size="60" maxlength="255" value="<?php  p($form->nom_etablissement) ?>" />
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right">
+	<b><?php  print_string('adresse_etablissement','referentiel') ?>:</b>
+	</td>
+    <td align="left">
+		<textarea cols="60" rows="5" name="adresse_etablissement"><?php  p($form->adresse_etablissement) ?></textarea>
+    </td>
+</tr>
+</table>
+
+<input type="hidden" name="logo_etablissement" value="" />
+<input type="hidden" name="action" value="creer_etablissement" />
+<!-- These hidden variables are always the same -->
+
+<input type="hidden" name="sesskey"     value="<?php  p(sesskey()) ?>" />
+<input type="hidden" name="mode"          value="<?php  p($mode) ?>" />
+<input type="submit" value="<?php  print_string("savechanges") ?>" />
+<input type="reset" value="<?php  print_string("cancel") ?>" />
+
+
+
+</form>	

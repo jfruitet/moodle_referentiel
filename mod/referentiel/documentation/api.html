@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Module Référentiel - Documentation</title>
+<style type="text/css">
+<!--
+@import url("style.css");
+-->
+</style>
+</head>
+<body>
+<h1>Module Référentiel / Skills repository - Documentation </h1>
+jean.fruitet@univ-nantes.fr
+2007/2011
+<pre>
+
+ENGLISH
+-------
+"referentiel" is a Moodle module for skill certification.
+You can:
+- specify a repository or import it
+- declare activities linked with competencies
+- follow students declarations
+- propose tasks (a mission, list of competencies, linked documents...)
+- export an print certificates
+
+- If your site enables Outcomes (also known as Competencies, Goals, Standards or Criteria),
+you can now export a list of Outcomes from referentiel module then grade things using
+that scale (forum, database, assigments, etc.) throughout the site.
+These grades will be integrated in Referentiel module.
+
+FRANCAIS
+--------
+"referentiel" est un module Moodle destiné à implanter une activité de type certification
+de compétences.
+Ce module permet :
+- de spécifier un référentiel de compétences (ou de le télécharger) ;
+- de déclarer des activités et d'associer celles-ci aux compétences du référentiel ;
+- de gérer l'accompagnement ;
+- de définir des tâches (mission, consignes, liste de compétences mobilisées pour accomplir la tâche, documents attachés) ;
+- d'émettre des certificats basés sur le dit référentiel ;
+
+- Si le site active les Objectifs, vous pouvez exporter le référentiel sous forme d'une
+liste d'objectifs qui serviront alors à évaluer toute forme d'activité
+(forum, BD, devoir, etc.)
+Ces notations sont récupérées dans le module référentiel sous forme de compétences
+validées dans des déclaration d'activité.
+
+INSTALLATION
+----------------------------
+Ce module doit être intégré dans le répertoire ./mod/ d'un serveur Moodle
+
+La procédure suivante s'applique à toute installation Moodle
+VOTRE_DOSSIER_MOODLE = le nom du dossier où est placé votre moodle, en général "moodle"
+URL_SERVEUR_MOODLE = le nom de votre serveur moodle, en général "http://machine.domaine.fr/moodle/"
+
+1. Décomprimer l'archive "referentiel_xxx.zip" dans le dossier "VOTRE_DOSSIER_MOODLE/mod/"
+Les fichiers de langue peuvent être laissés dans le dossier
+"VOTRE_DOSSIER_MOODLE/mod/referentiel/lang/"
+
+2. se loger avec le role admin sur "URL_SERVEUR_MOODLE"
+
+3. Installer le module referentiel comme un nouveau module en passant par la rubrique
+Administration / Notification
+S'il y a des messages d'erreur m'avertir aussitôt par mail en m'envoyant une copie d'écran du message d'erreur.
+
+4. paramétrer le module au niveau du site en passant par la rubrique
+Administration / Plugins / Activités / Référentiel
+
+ERREUR FREQUENTE LORS DES MISE A JOUR
+------------------------------------------------
+L'erreur à éviter est de créer une copie de sauvegarde (sous un autre nom) dans le dossier
+VOTRE_DOSSIER_MOODLE/mod/
+
+-------------------------------------------------
+Marche à suivre pour désinstaller ce module
+-------------------------------------------------
+1. Logez-vous avec le role admin
+
+2. Supprimez le module
+Administration / Plugins / Activités / Gestion des activités
+Sélectionnner  Référentiel :: Supprimer
+
+3. Supprimez le dossier VOTRE_DOSSIER_MOODLE/mod/referentiel
+
+4. Supprimer les dossiers
+./moodledata/#course_id/moddata/referentiel
+de tous les cours où une instance a été déclarée
+
+
+
+ENGLISH
+---------------------------------------------------------
+
+The following steps should get you up and running with this module code.
+---------------------------------------------------------
+1. Unzip the archive in moodle/mod/ directory
+Languages files can be left in the moodle/mod/referentiel/lang/ directory.
+2. log on with admin role
+
+3. install new module as usual (admin Notification)
+
+4. Set module parameters
+Administration / Plugins / Activity / Repository
+
+---------------------------------------------------------
+Documentation et mises à jours sous forme d'archive ZIP 
+---------------------------------------------------------
+sur les sites du MoodleMoot2008 (Nantes) et du MoodleMoot2009 (Lyon)
+
+    * MoodleMoot2008 : http://moodlemoot2008.vet-nantes.fr/moodle/course/view.php?id=36
+    * MoodleMoot2009 : http://moodlemoot2009.insa-lyon.fr/course/view.php?id=24
+    * MoodleMoot2010 : http://moodlemoot2010.utt.fr/course/view.php?id=33
+
+Pour être tenu informé des mise à jour inscrivez-vous dans les forums de ces cours.
+
+---------------------------------------------------
+CVS / Subversion
+---------------------------------------------------
+Le serveur public des sources CVS / Subversion est  :
+Subversion server at: 
+https://subversion.cru.fr/referentiel/
+
+
+----------------------------------------------------
+Forums et Tests du module
+----------------------------------------------------
+A french thread is at 
+http://moodle.org/mod/forum/discuss.php?d=127647
+
+Un fil de discussion sur Moodle en Français est consacré au module : 
+http://moodle.org/mod/forum/discuss.php?d=127647
+
+A test server here : http://ateliers.moodlelab
+
+Un espace de test est disponible sur le serveur Moodle des Ateliers du  MoodleLab 
+http://ateliers.moodlelab
+dans la catégorie Référentiels
+
+---------------------------------------------------------
+Liste des documents disponibles sur ces différents sites
+Useful documentation
+---------------------------------------------------------
+
+    * Documentation utilisateurs / Users doc
+    * Documentation développeurs / Developers doc
+    * Communications au MoodleMoot2008 et MoodleMoot2009 / French MoodleMoots 
+    * Captures d'écran et présentations animées / Print screens
+    * Vidéos 
+
+--------------------------------------------------------
+Liste de référentiels disponibles pour importation
+--------------------------------------------------------
+After you get runing the referentiel module, go to "./mod/referentiel/sauvegarde_referentiel" directory 
+to import some ready made repositories. (In french)
+Après installation du module sur un serveur Moodle, le dossier "./mod/referentiel/sauvegarde_referentiel" 
+contient les exports/imports suivants :
+
+Référentiel		Format d'import CSV			Format d'import XML
+B2i Ecole		referentiel-b2i_ecole.csv	referentiel-b2i_ecole.xml
+B2i Collège		referentiel-b2i_college.csv	referentiel-b2i_college.xml
+B2i Lycée		referentiel-b2i_lycee.csv	referentiel-b2i_lycee.xml
+C2IN1			referentiel-c2n1.csv		referentiel-c2in1.xml
+C2i2 Enseignant	referentiel-c2i2e.csv		referentiel-c2i2e.xml
+
+
+Moodle Referentiel v5.3.5 de juin 2010 et suivantes
+---------------------------------------------------
+
+Un nouveau format XML est proposé en importation : XML simplifié
+Il est généré par l'éditeur de référentiel wysiwyg intégré à Moodle depuis la version 5.3.5
+On le reconnaît à la présence dans le nom de fichier du suffixe _sxml.xml
+Vous pouvez trouver des modèles pour ce format dans le dossier
+./mod/referentiel/editor/data de votre serveur.
+
+Les fichiers .txt, .dat de ce dossier sont des modèles pour le module référentiel.
+Les fichier _sxml.xml sont au format XML simplifié.
+Ils peuvent être importés dans le module lors de la création d'une nouvelle instance de référentiel
+en cliquant sur le bouton "Import XML simplifié".
+
+N'essayez pas d'importer un référentiel XML simplifié (dont le nom est de la forme xxx_sxml.xml)
+depuis la rubrique "Référentiel/Importer" de l'activité Référentiel
+
+
+--------------------------------------------------------
+Sauvegarde des données sur le serveur Moodle
+et importation /  exportation et restauration du module
+-------------------------------------------------------
+Moodle 1.9 :
+Exports and user data are in ./moodledata/#course_id/moddata/referentiel
+Ce module enregistre les exportations dans le dossier ./moodledata/#course_id/moddata/referentiel
+Attention : En cas de suppression du module Référentiel ces dossier doivent être purgés à la main 
+par l'administrateur système !
+
+Moodle 2 : File API
+
+
+---------------------------------------------------------
+ This is the "graphical" structure of the referentiel module:
+
+                 (refrentiel INSTANCE)                                          (referentiel OCCURRENCE)
+                     Table referentiel                                         Table referentiel_referentiel         Table referentiel_etablissement     Table referentiel_pedagogie
+                    (CL,pk->id, fk->id_referentiel_referentiel)                         (pk->id)                         (pk->id, files)                      (pk->id)
+                        |                        |                                        #                                   |                                 |
+                        |                        |                                        |                      Table referentiel_etudiant              Table referentiel_a_user_pedagogie
+                        |                        |-----------------n : 1 -----------------|                      (UL, pk->id, fk->id_etablissement,       ( pk->id, fk->id_pedagogie,
+                      1 : n                                                               |                       fk->id_user) --------------------------- fk->id_user, fk->id_referentiel_referentiel)
+                        |                                                                 |                                                                                       |
+                        |---------------------------------------|                         |-----|---------------------------------------------------------------------------------|
+                        |                                       |                               |
+           Table referentiel_activites            Table referentiel_task            Table referentiel_certificat
+           (UL,pk->id, fk->referentiel,files,	  (UL,pk->id, fk->referentiel,files)   (pk->id, fk->id_referentiel_referentiel
+                     fk->id_user)          |      |             |                          fk->id_user)
+                        |                  |      |             |                               |
+                      1 : n                |      |           1 : n                             |
+                        |                  |      |             |                               |
+                 referentiel_document      |      |      referentiel_consigne          referentiel_domaine
+           (pk->id, fk->id_activite, files)|      |     (pk->id, fk->id_task, files)    (pk->id, fk->id_referentiel_referentiel)
+                                           |      |                                             |
+                                           |      |                                    referentiel_competence
+                                           |------|                                     (pk->id, fk->id_domaine)
+										      |                                                 |
+                                              |                                       referentiel_item_competence
+                                    referentiel_a_user_task                            (pk->id, fk->id_competence, fk->id_referentiel_referentiel)
+                           (UL, pk->id, fk->id_activite, fk->id_task)
+
+ Meaning: pk->primary key field of the table
+          fk->foreign key to link with parent
+          nt->nested field (recursive data)
+          CL->course level info
+          UL->user level info
+          files->table may have files)
+
+-----------------------------------------------------------
+
+
+---------------------------------------------------------
+<a href="version_history.txt">Historique des versions</a> 
+---------------------------------------------------------
+
+
+
+</pre>
+</body>
+</html>
