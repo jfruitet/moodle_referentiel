@@ -1,6 +1,7 @@
 <?php
 // referentiel module
 //
+$string['passdelete'] = 'Erase any password';
 $string['notsameoccurrence'] = 'This skill repository is not compatible';
 $string['notsameinstance'] = 'This skill repository instance is not compatible';
 $string['erreur1']= 'Missing parameter. You can\'t use this page (<i> {$a} </i>) without a madatory parameter...';

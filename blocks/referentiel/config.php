@@ -139,7 +139,16 @@ if (!empty($occurrenceid)){
 					// le mot de passe est-il actif ?
 					// cette fonction est due au parametrage
 					if ((!$pass) && ($checkpass=='checkpass')){
-		    			if (!empty($formdata->pass_referentiel)){
+                    	if (!empty($formdata->pass_delete)){
+							// supprimer
+                            $pass=referentiel_delete_pass($occurrence_object->referentiel->id);
+   							if (!$pass){
+   								// Abandonner
+              					redirect($viewurl);
+    							die();
+				  			}
+						}
+						else if (!empty($formdata->pass_referentiel)){
    							if (!empty($formdata->force_pass)){  // force EDITION
        							$pass=referentiel_set_pass($occurrence_object->referentiel->id, $formdata->pass_referentiel);
 							}

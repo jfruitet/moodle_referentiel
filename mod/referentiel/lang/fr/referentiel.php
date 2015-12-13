@@ -2,6 +2,8 @@
 // ----------------
 // UTF-8 French
 //
+$string['passdelete'] = 'Supprimer tout mot de passe associé à ce référentiel';
+
 $string['notsameoccurrence'] = 'Cette occurrence de référentiel n\'est pas compatible';
 $string['notsameinstance'] = 'Cette instance n\'est pas compatible';
 
@@ -1627,6 +1629,7 @@ $string['check_pass_referentiel'] = 'Saisissez le mot de passe qui protége ce r
 $string['existe_pass_referentiel'] = 'Laissez vide pour conserver le mot de passe actuel.';
 $string['aide_pass_referentiel'] = 'Un mot de passe permet de protéger le référentiel contre toute modification indésirable.';
 $string['pass_referentiel'] = 'Mot de passe';
+
 $string['referentiel_config'] = 'Configuration des instances de référentiel';
 $string['referentiel_impression_autorisee'] = 'Interdire l\'Impression des certificats';
 $string['config_impression_referentiel'] = 'Ce paramètre régit l\'Impression des certificats au niveau du cours.

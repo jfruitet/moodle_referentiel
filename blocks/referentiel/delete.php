@@ -48,9 +48,11 @@ $blockid = required_param('blockid', PARAM_INT);
 $occurrenceid = optional_param('occurrenceid', 0, PARAM_INT);
 $mode  = optional_param('mode', 'delete', PARAM_ALPHANUMEXT);    // Force the browse mode  ('list')
 $pass  = optional_param('pass', 0, PARAM_INT);    // mot de passe ok
+$pass_delete  = optional_param('pass_delete', 0, PARAM_INT);    // mot de passe a supprimer
 $checkpass = optional_param('checkpass','', PARAM_ALPHA); // mot de passe fourni
 $action = optional_param('action','', PARAM_ALPHANUMEXT);
 $delete = optional_param('delete', '', PARAM_ALPHANUMEXT);    //delete action
+$cancel = optional_param('cancel', '', PARAM_ALPHANUMEXT);    //cancel action
 $deleteid = optional_param('deleteid', 0, PARAM_INT);    // delete record id
 // http://localhost/moodle25/blocks/referentiel/edit.php?blockid=65&courseid=2&occurrenceid=2&deleteid=217&action=modifieritem&delete=Supprimer&pass=&sesskey=pLZgTzHQUJ
 
@@ -103,6 +105,7 @@ $isauthor=$occurrence_object->is_author();
 	$msg="";
 	if (!empty($occurrence_object->referentiel) && isset($form)) {
 		// add, delete or update form submitted
+
 		if (!empty($form->delete)){
 			if ($form->delete == get_string("delete")){
 				// Suppression instances
@@ -230,6 +233,11 @@ $isauthor=$occurrence_object->is_author();
 				}
 			}
 		}
+		if ($cancel){
+            redirect($viewurl);
+      		die();
+		}
+
 	}
 
 	// affichage
@@ -253,7 +261,7 @@ $deletenode->make_active();
 
 if (!empty($occurrenceid)){
 	if ($role->can_edit){
-		if (!$pass  // si c est un admin il outrepasse car pass==1
+		if (!$pass  // si c'est un admin il outrepasse car pass==1
 		&& (
 			(
 			!empty($occurrence_object->referentiel->pass_referentiel)
@@ -278,7 +286,16 @@ if (!empty($occurrenceid)){
 					// le mot de passe est-il actif ?
 					// cette fonction est due au parametrage
 					if ((!$pass) && ($checkpass=='checkpass')){
-		    			if (!empty($formdata->pass_referentiel)){
+						if (!empty($formdata->pass_delete)){
+							// supprimer
+                            $pass=referentiel_delete_pass($occurrence_object->referentiel->id);
+   							if (!$pass){
+   								// Abandonner
+              					redirect($viewurl);
+    							die();
+				  			}
+						}
+						else if (!empty($formdata->pass_referentiel)){
    							if (!empty($formdata->force_pass)){  // force EDITION
        							$pass=referentiel_set_pass($occurrence_object->referentiel->id, $formdata->pass_referentiel);
 							}
@@ -290,7 +307,7 @@ if (!empty($occurrenceid)){
               					redirect($viewurl);
     							die();
 				  			}
-   			    		}
+						}
        					else{
        						if (empty($formdata->force_pass)){  // empty password and not an admin or author connected
 	  							// Abandonner
@@ -428,7 +445,6 @@ global $CFG;
 */
 			$s.='
 </p><p>
-<td colspan="2" align="center">
 <input type="hidden" name="action" value="modifierreferentiel" />
 <input type="hidden" name="referentiel_id"      value="'.$occurrence->id.'" />
 <!-- These hidden variables are always the same -->
