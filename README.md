@@ -63,6 +63,8 @@ that scale (forum, database, assigments, etc.) throughout the site. Then these e
 
 ### Sources
 
+[Moodle 2.7, 2.8] (https://github.com/jfruitet/moodle_referentiel_m27)
+
 [Moodle 2.9, 3.0 and further] (https://github.com/jfruitet/moodle_referentiel)
 
 ### Installation
@@ -79,6 +81,13 @@ Read the [install documentation] (http://moodlemoot2012.unimes.fr/mod/resource/v
 
 ### Documentation
 
+English: https://docs.moodle.org/30/en/mod/referentiel/view
+
+Look at
+./mod/referentiel/documentation directory on your Moodle server
+
+French : https://docs.moodle.org/2x/fr/mod/referentiel/view
+
 MoodleMoot francophones
 [MoodleMoot 2012] (http://moodlemoot2012.unimes.fr/course/view.php?id=33) Connexion anonyme
 
@@ -86,8 +95,6 @@ Le dossier
 ./mod/referentiel/documentation
 sur votre serveur Moodle contient une documentation élémentaire
 
-Look at
-./mod/referentiel/documentation directory on your Moodle server
 
 ### Blog
 [Les Référentiels de compétence] (http://jfreferentiels.blogspot.fr/)
