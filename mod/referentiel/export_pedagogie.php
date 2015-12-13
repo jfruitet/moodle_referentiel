@@ -309,7 +309,7 @@ CONSTRAINT  PRIMARY KEY (id)
         echo "<p><div class=\"boxaligncenter\"><a href=\"$efile\">$txt->download</a></div></p>";
         echo "<p><div class=\"boxaligncenter\"><font size=\"-1\">$txt->downloadextra</font></div></p>";
 
-        $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/pedagogie.php?id='.$cm->id);
+        echo $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/pedagogie.php?id='.$cm->id);
         echo $OUTPUT->footer();
         die();
 

@@ -128,7 +128,8 @@
         echo $OUTPUT->box_end();
     }
 
-    print_continue("$base_url/index.php");
+    // print_continue("$base_url/index.php");
+    echo $OUTPUT->continue_button("$base_url/index.php");
 
     echo $OUTPUT->footer();
 

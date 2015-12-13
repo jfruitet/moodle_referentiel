@@ -150,7 +150,7 @@
 			$pass=referentiel_check_pass($referentiel_referentiel, $form->pass_referentiel);
 			if (!$pass){
 				// Abandonner
- 				$OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/view.php?id='.$cm->id.'&amp;non_redirection=1');
+ 				echo $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/view.php?id='.$cm->id.'&amp;non_redirection=1');
       			exit;
 			}
 		}
@@ -263,10 +263,10 @@
 
                     echo "<hr />";
                     if (isset($rformat->returnpage) && ($rformat->returnpage!="")){
-                        $OUTPUT->continue_button($rformat->returnpage);
+                        echo $OUTPUT->continue_button($rformat->returnpage);
                     }
                     else{
-                        $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/view.php?id='.$cm->id.'&amp;non_redirection=1');
+                        echo $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/view.php?id='.$cm->id.'&amp;non_redirection=1');
                     }
 
                 }

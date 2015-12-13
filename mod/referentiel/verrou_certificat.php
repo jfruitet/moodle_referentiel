@@ -417,7 +417,7 @@
             elseif ($action=='dossieretat'){
                 echo '<div align="center">'.referentiel_fermer_dossier_certificats($records_certificats, $dossieretat).' '.get_string('certiftraite', 'referentiel')."</div>\n";
             }
-            $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/certificat.php?id='.$cm->id);
+            echo $OUTPUT->continue_button($CFG->wwwroot.'/mod/referentiel/certificat.php?id='.$cm->id);
             echo $OUTPUT->footer();
             die();
         }

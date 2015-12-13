@@ -119,7 +119,7 @@ if (!$role->can_edit){
 			$pass=referentiel_check_pass($occurrence_object->referentiel, $form->pass_referentiel);
 			if (!$pass){
 				// Abandonner
- 				$OUTPUT->continue_button($courseurl);
+ 				echo $OUTPUT->continue_button($courseurl);
       			exit;
 			}
 		}
@@ -221,12 +221,11 @@ if (!$role->can_edit){
 
                     echo "<hr />";
                     if (isset($rformat->returnpage) && ($rformat->returnpage!="")){
-                        $OUTPUT->continue_button($rformat->returnpage);
+                        echo $OUTPUT->continue_button($rformat->returnpage);
                     }
                     else{
-                        $OUTPUT->continue_button(new moodle_url('/blocks/referentiel/view.php', array('blockid'=>$blockid, 'courseid'=>$courseid, 'occurrenceid'=>$rformat->new_referentiel_id)));
+                        echo $OUTPUT->continue_button(new moodle_url('/blocks/referentiel/view.php', array('blockid'=>$blockid, 'courseid'=>$courseid, 'occurrenceid'=>$rformat->new_referentiel_id)));
                     }
-
                 }
                 else{
                     print_error( get_string('cannotread','referentiel') );
