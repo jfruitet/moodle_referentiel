@@ -70,7 +70,14 @@ $role=$occurrence_object->roles();
 $isadmin=$role->is_admin;
 $isauthor=$occurrence_object->is_author();
 
-$form = (object)$_POST;
+if (isset($SESSION->modform)) {   // Variables are stored in the session
+	$form = $SESSION->modform;
+    unset($SESSION->modform);
+}
+else {
+        $form = (object)$_POST;
+}
+
 // variable d'action
 if (!empty($form->cancel)&& ($form->cancel == get_string("quit", "referentiel"))){
 	// Abandonner
@@ -101,16 +108,14 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_heading($course->fullname);
 $PAGE->set_title($pagetitle);
 $PAGE->navbar->add($occurrence_object->referentiel->code_referentiel);
-//$settingsnode = $PAGE->settingsnav->add(get_string('displayoccurrence', 'block_referentiel'));
-//$site = get_site();
 
 $settingsnode = $PAGE->settingsnav->add(get_string('config', 'block_referentiel'));
-$editnode = $settingsnode->add(get_string('config', 'block_referentiel'), $baseurl);
-$editnode->make_active();
+$configurl = new moodle_url('/blocks/referentiel/config.php', array('blockid'=>$blockid, 'courseid'=>$courseid, 'occurrenceid' => $occurrenceid ));
+$confignode = $settingsnode->add(get_string('config', 'block_referentiel'), $configurl);
+$confignode->make_active();
 
 /// Parametre des onglets
 $currenttab = 'config';
-$icon = $OUTPUT->pix_url('icon','referentiel');
 
 if (!empty($occurrenceid)){
 	if ($role->can_edit){

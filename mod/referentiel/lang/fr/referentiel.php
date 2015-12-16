@@ -2,7 +2,8 @@
 // ----------------
 // UTF-8 French
 //
-$string['passdelete'] = 'Supprimer tout mot de passe associé à ce référentiel';
+$string['passdelete'] = 'Supprimer tout mot de passe associé à cette occurrence de référentiel';
+$string['passnonexists'] = 'Aucun mot de passe n\'est associé à cette occurrence de référentiel';
 
 $string['notsameoccurrence'] = 'Cette occurrence de référentiel n\'est pas compatible';
 $string['notsameinstance'] = 'Cette instance n\'est pas compatible';

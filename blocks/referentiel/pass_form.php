@@ -100,13 +100,18 @@ class pass_form extends moodleform {
 				$mform->setType('pass_referentiel', PARAM_TEXT);
 				//$mform->addRule('pass_referentiel', null, 'alphanumeric', null, 'client');
 				$mform->setDefault('pass_referentiel', '');
-                $mform->addElement('html','<br /><i>'.get_string('existe_pass_referentiel','referentiel').'</i>');
                 $mform->addElement('hidden', 'force_pass', $USER->id);
             	$mform->setType('force_pass', PARAM_INT);
 // Ajout JF 20151212
-                $mform->addElement('checkbox', 'pass_delete', get_string('passdelete','referentiel'));
-				$mform->setType('pass_delete', PARAM_INT);
-				$mform->setDefault('pass_delete', 0);
+				if (referentiel_md5pass_exists($this->occurrenceid)){
+                    $mform->addElement('html','<br /><i>'.get_string('existe_pass_referentiel','referentiel').'</i>');
+	                $mform->addElement('checkbox', 'pass_delete', get_string('passdelete','referentiel'));
+					$mform->setType('pass_delete', PARAM_INT);
+					$mform->setDefault('pass_delete', 0);
+				}
+				else{
+	                $mform->addElement('html','<br /><i>'.get_string('passnonexists','referentiel').'</i>');
+				}
 	    }
    		else{
                 $mform->addElement('password', 'pass_referentiel', get_string('pass_referentiel', 'referentiel'), array('size'=>'20'));

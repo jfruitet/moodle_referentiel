@@ -169,6 +169,22 @@ function referentiel_date_special_timestamp($date_special){
 TABLES referentiel_referentiel
 */
 
+/**
+ * Given an occurrence id return true or false,
+ *
+ * @return int The boolean
+ **/
+
+function referentiel_md5pass_exists($occurrenceid){
+global $DB;
+	if (!empty($occurrenceid)){
+        if ($occurrence = $DB->get_record('referentiel_referentiel', array("id" => $occurrenceid))){
+			return (!empty($occurrence->pass_referentiel));
+		}
+	}
+    return 0;
+}
+
 
 /**
  * Given an object containing all the necessary referentiel,
@@ -212,6 +228,23 @@ function referentiel_check_pass($referentiel_referentiel, $pass){
         if ($ok) return 1;
 	}
 	return 0;
+}
+
+/**
+ * Given an object containing all the necessary referentiel,
+ * (defined by the form in pass_inc.php) this function
+ * delete the pass
+ *
+ * @return int The boolean
+ **/
+ function referentiel_delete_pass($referentiel_referentiel_id){
+ global $DB;
+// met à jour le mot de passe
+    $ok=false;
+    if (!empty($referentiel_referentiel_id)){
+    	$ok=$DB->set_field('referentiel_referentiel','pass_referentiel', '', array("id" => "$referentiel_referentiel_id"));
+	}
+    return $ok;
 }
 
 
