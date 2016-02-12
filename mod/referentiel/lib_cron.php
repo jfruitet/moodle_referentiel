@@ -44,6 +44,8 @@
  * @todo Finish documenting this function
 **/
 
+
+
 function referentiel_cron() {
 global $CFG;
 
@@ -449,7 +451,8 @@ mtrace("DEBUT CRON REFERENTIEL CERTIFICATS");
 
                 // Send the post now!
                 // mtrace('Sending ', '');
-                if (!$mailresult = email_to_user($userto, $userfrom, $postsubject, $posttext,
+
+                if (!$mailresult = email_to_user($userto, $userfrom, $site->shortname.' '.$postsubject, $posttext,
                                                  $posthtml, '', '', $CFG->forum_replytouser)) {
                     mtrace("Error: certificates : Could not send out mail for id $certificat->id to user $userto->id ($userto->email) .. not trying again.");
                           $errorcount[$cid]++;
@@ -710,7 +713,7 @@ mtrace("DEBUT CRON REFERENTIEL CERTIFICATS");
                     $posthtml = '';
                 }
 
-                if (!$mailresult =  email_to_user($userto, $site->shortname, $postsubject, $posttext, $posthtml,
+                if (!$mailresult =  email_to_user($userto, $userfrom, $site->shortname.' '.$postsubject, $posttext, $posthtml,
                                                   '', '', $CFG->forum_replytouser)) {
                     mtrace("ERROR!");
                     mtrace ("Error:  Could not send out digest mail to user $userto->id ($userto->email)... not trying again.\n");
@@ -787,7 +790,7 @@ global $DB;
         // mtrace('ACTIVITES...');
 
 		/*
-		// Mark them all now as being mailed.  It's unlikely but possible there
+        // Mark all activities as being mailed.  It's unlikely but possible there
         // might be an error later so that a post is NOT actually mailed out,
         // but since mail isn't crucial, we can accept this risk.  Doing it now
         // prevents the risk of duplicated mails, which is a worse problem.
@@ -1298,8 +1301,10 @@ if (REFERENTIEL_DEBUG){
                 // Send the post now!
                 // mtrace('Sending ', '');
 
+			    $postsubject=$site->shortname.' '.$postsubject;
+
                 if (!$mailresult = email_to_user($userto, $userfrom, $postsubject, $posttext,
-                                                 $posthtml, '', '', $CFG->forum_replytouser)) {
+					$posthtml, '', '', $CFG->forum_replytouser)) {
                     mtrace("\nError: mod/referentiel/lib.php:  Could not send out mail for id $activite->id to user $userto->id".
                          " ($userto->email) .. not trying again.");
                     //add_to_log($course->id, 'referentiel', 'mail error', "activite $activite->id to user $userto->id ($userto->email)","", $cm->id, $userto->id);
@@ -1604,7 +1609,7 @@ if (REFERENTIEL_DEBUG){
                         $posthtml = '';
                 }
 
-                if (!$mailresult =  email_to_user($userto, $site->shortname, $postsubject, $posttext, $posthtml,
+                if (!$mailresult =  email_to_user($userto, $userfrom,  $site->shortname.' '.$postsubject, $posttext, $posthtml,
                                                   '', '', $CFG->forum_replytouser)) {
                         mtrace("ERROR!: Could not send out referentiel activity digest mail to user $userto->id ($userto->email)... not trying again.");
                         // add_to_log($course->id, 'referentiel', 'mail digest error', '', '', $cm->id, $userto->id);
@@ -1920,9 +1925,7 @@ if (REFERENTIEL_DEBUG){
                 $posthtml = referentiel_make_mail_html(TYPE_TACHE, $context, $course, $task, $userfrom, $userto);
 
                 // Send the post now!
-                // mtrace('Sending ', '');
-
-                if (!$mailresult = email_to_user($userto, $userfrom, $postsubject, $posttext,
+                if (!$mailresult = email_to_user($userto, $userfrom, $site->shortname.' '.$postsubject, $posttext,
                                                  $posthtml, '', '', $CFG->forum_replytouser)) {
                     mtrace("Error: Could not send out mail for id $task->id to user $userto->id".
                          " ($userto->email) .. not trying again.");
@@ -2176,7 +2179,7 @@ if (REFERENTIEL_DEBUG){
                     $posthtml = '';
                 }
 
-                if (!$mailresult =  email_to_user($userto, $site->shortname, $postsubject, $posttext, $posthtml,
+                if (!$mailresult =  email_to_user($userto, $userfrom, $site->shortname.' '.$postsubject, $posttext, $posthtml,
                                                   '', '', $CFG->forum_replytouser)) {
                     mtrace("ERROR!");
                     mtrace("Error: Could not send out digest mail to user $userto->id ($userto->email)... not trying again.\n");
@@ -2892,9 +2895,10 @@ function referentiel_get_unmailed_activities($starttime, $endtime) {
 global $DB;
     $params = array("starttime" => "$starttime", "endtime" => "$endtime",
 "starttime2" => "$starttime", "endtime2" => "$endtime",
-"starttime3" => "$starttime", "endtime3" => "$endtime" );
+"starttime3" => "$starttime", "endtime3" => "$endtime",
+"mailed" => "0", "mailnow" => "1" );
     $sql="SELECT * FROM {referentiel_activite}
- WHERE ((mailed = '0') AND (mailnow = '1'))
+ WHERE ((mailed = :mailed) AND (mailnow = :mailnow))
  AND (
  ((date_creation >= :starttime) AND (date_creation < :endtime))
   OR ((date_modif >= :starttime2) AND (date_modif < :endtime2))
@@ -2902,7 +2906,7 @@ global $DB;
  )
  ORDER BY date_creation ASC, date_modif ASC, date_modif_student ASC ";
 
-    // mtrace("DEBUG : cron_lib.php : : lib_cron.php : 2483 : SQL : $sql");
+    // mtrace("DEBUG : cron_lib.php : : lib_cron.php : 2899 : SQL : $sql");
     return $DB->get_records_sql($sql, $params);
 }
 
@@ -2914,16 +2918,6 @@ global $DB;
 function referentiel_get_unmailed_tasks($starttime, $endtime) {
 // detournement du module forum
 global $DB;
-    /*
-    // BUGUEE CAR trop de notifications
-        $sql="SELECT a.* FROM {referentiel_task} a
- WHERE a.mailed = '0'
- AND a.date_modif >= '".$starttime."'
- AND (a.date_modif < '".$endtime."' OR a.mailnow = '1')
- ORDER BY a.date_modif ASC, a.date_creation ASC ";
-    // mtrace("DEBUG : cron_lib.php : : cron_lib.php : 2167 : SQL : $sql");
-    return $DB->get_records_sql($sql);
-    */
     $params = array("starttime" => "$starttime", "endtime" => "$endtime", "mailed" => "0", "mailnow" => "1");
     $sql="SELECT * FROM {referentiel_task}
  WHERE  (mailed = :mailed) AND  (mailnow = :mailnow)
