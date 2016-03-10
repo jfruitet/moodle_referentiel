@@ -1,15 +1,18 @@
 <?php
 // referentiel module
 //
-$string['passdelete'] = 'Erase any password for this occurrence of skills repository';
-$string['passnonexists'] = 'This occurrence of skills repository is\'t protected by a password';
-
 $string['notsameoccurrence'] = 'This skill repository is not compatible';
 $string['notsameinstance'] = 'This skill repository instance is not compatible';
 $string['erreur1']= 'Missing parameter. You can\'t use this page (<i> {$a} </i>) without a madatory parameter...';
 $string['type_aide']= 'No more than 20 characters please.';
 
 // Events
+$string['domaincreated'] = 'Domain created';
+$string['eventinstanceviewed'] = 'Instance displayed';
+$string['eventcertificatedeleted'] = 'Certificate deleted';
+$string['eventcertificateupdated'] = 'Certificate updated';
+$string['eventtasklinked'] = 'Task linked';
+
 $string['eventeditpageviewed'] = 'Edit page viewed';
 $string['eventreferentielcomplete'] = 'Referentiel complete';
 $string['eventactivitycreated'] = 'Activity created';
