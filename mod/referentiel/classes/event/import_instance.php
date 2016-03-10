@@ -34,8 +34,8 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2014 Jean FRUITET <jean.fruitet@univ-nantes.fr>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_module_viewed extends \core\event\import_intance {
 
+class import_intance extends \core\event\base {
     /**
      * Init method.
      *
