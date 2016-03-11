@@ -169,22 +169,6 @@ function referentiel_date_special_timestamp($date_special){
 TABLES referentiel_referentiel
 */
 
-/**
- * Given an occurrence id return true or false,
- *
- * @return int The boolean
- **/
-
-function referentiel_md5pass_exists($occurrenceid){
-global $DB;
-	if (!empty($occurrenceid)){
-        if ($occurrence = $DB->get_record('referentiel_referentiel', array("id" => $occurrenceid))){
-			return (!empty($occurrence->pass_referentiel));
-		}
-	}
-    return 0;
-}
-
 
 /**
  * Given an object containing all the necessary referentiel,
@@ -228,23 +212,6 @@ function referentiel_check_pass($referentiel_referentiel, $pass){
         if ($ok) return 1;
 	}
 	return 0;
-}
-
-/**
- * Given an object containing all the necessary referentiel,
- * (defined by the form in pass_inc.php) this function
- * delete the pass
- *
- * @return int The boolean
- **/
- function referentiel_delete_pass($referentiel_referentiel_id){
- global $DB;
-// met à jour le mot de passe
-    $ok=false;
-    if (!empty($referentiel_referentiel_id)){
-    	$ok=$DB->set_field('referentiel_referentiel','pass_referentiel', '', array("id" => "$referentiel_referentiel_id"));
-	}
-    return $ok;
 }
 
 
@@ -1091,34 +1058,24 @@ global $DB;
 
 
 
-
-
 /**
  * This function returns records from table referentiel_activite
  *
  * @param id reference activite
- * @param select clause : ' AND champ=valeur,  ... '
- * @param order clause : ' champ ASC|DESC, ... '
  * @return objects
- * @todo Finish documenting this function
  **/
-function referentiel_get_users_activites_instance($referentiel_instance_id, $user_id=0, $select='', $order=''){
+function referentiel_get_users_activites_instance($referentiel_instance_id){
 global $DB;
-	$where='';
 	if (!empty($referentiel_instance_id)){
-        $params = array("refid" => "$referentiel_instance_id", "userid" => "$user_id");
-		if ($user_id!=0){
-			$where= ' AND userid=:userid';
+        $params = array("refid" => "$referentiel_instance_id");
+        $sql="SELECT DISTINCT userid FROM {referentiel_activite} WHERE ref_instance=:refid GROUP BY userid ORDER BY userid ";
+		if ($recs = $DB->get_records_sql($sql, $params)){
+			return ($recs);
 		}
-		if (empty($order)){
-			$order= 'userid ASC, date_creation DESC ';
-		}
-        $sql="SELECT DISTINCT userid FROM {referentiel_activite} WHERE ref_instance=:refid  $where  $select ORDER BY $order ";
-		return $DB->get_records_sql($sql, $params);
 	}
-	else
-		return NULL;
+    return NULL;
 }
+
 
 
 
