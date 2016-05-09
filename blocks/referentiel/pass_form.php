@@ -37,6 +37,21 @@ if (!defined('MOODLE_INTERNAL')) {
 
 require_once("{$CFG->libdir}/formslib.php");
 
+/**
+   input : occurence id
+   output boolean
+*/
+
+function referentiel_md5pass_exists($occurrenceid){
+global $DB;
+    if (!empty($occurrenceid)){
+	    if ($rec_occurrence=$DB->get_record('referentiel_referentiel', array('id'=>$occurrenceid))){
+			return (!empty($rec_occurrence->pass_referentiel));
+		}
+	}
+	return false;
+}
+
 class pass_form extends moodleform {
 	var $occurrenceid;
 	var $blockid;

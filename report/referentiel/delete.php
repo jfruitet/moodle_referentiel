@@ -139,7 +139,7 @@
  */
  
     function referentiel_referentiel_suppression($refrefid, $base_url){
-    // suppression du référentiel_referentiel
+    // occurrence suppression
     global $SITE;
     global $CFG;
 
@@ -147,10 +147,6 @@
     // exit;
     	$ok=referentiel_delete_referentiel_domaines($refrefid);
     	$ok=$ok && referentiel_delete_referentiel_certificats($refrefid);
-        if ($ok){
-            $msg=get_string('deletereferentiel', 'referentiel').' '.$refrefid;
-            add_to_log($SITE->id, "referentiel", "delete", "$base_url/delete.php?r=".$refrefid, $msg);
-        }
         return $ok;
     }
 
@@ -160,18 +156,13 @@
  */
 
     function referentiel_instance_suppression($id, $base_url){
-    // suppression du référentiel_referentiel
+    // occurrence suppression
     global $SITE;
     global $CFG;
     global $base_url;
     // print_object($SITE);
     // exit;
     	$ok=referentiel_delete_instance($id);
-
-        if ($ok){
-            $msg=get_string('deleteinstance', 'referentiel').' '.$id;
-            add_to_log($SITE->id, "referentiel", "delete", "$base_url/delete.php?i=".$id, $msg);
-        }
         return $ok;
     }
 

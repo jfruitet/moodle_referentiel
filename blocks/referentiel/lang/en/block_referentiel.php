@@ -24,6 +24,8 @@
  */
 
 
+$string['passdelete'] = 'Erase any password';
+
 $string['addoccurrence'] = 'New Skills repository';
 $string['bareme'] = 'Scale';
 $string['check_competency'] = 'Only checked competencies will be saved...';
@@ -61,6 +63,7 @@ $string['occurrence'] = 'Occurrence {$a}';
 $string['occurrences'] = 'Occurrences';
 $string['pass'] = 'Password input';
 $string['pass_set'] = 'Password set';
+
 $string['passoccurrenceh'] = 'Protection by Password';
 $string['passoccurrenceh_help'] = 'A password protects Skills repository edition. (manager role can override any password)';
 $string['pluginname'] = 'Skills repository';
