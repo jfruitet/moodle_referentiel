@@ -1,7 +1,7 @@
 Moodle module referentiel 
 Module Moodle - Référentiel / Skills repository - Documentation
 jean.fruitet@univ-nantes.fr
-2007/2015
+2007/206
 
 Type: Activity Module
 Requires: Moodle 2.2 or later
@@ -32,7 +32,7 @@ Installation des briques constituant l'application Référentiel de Moodle
 Consultez la documentation détaillée :
 http://moodlemoot2012.unimes.fr/course/view.php?id=33
 
-
+http://jfreferentiels.blogspot.fr/2015_10_01_archive.html
 
 ---------------------------------------------------------
 Historique des versions 
@@ -40,9 +40,16 @@ Historique des versions
 Ceci est la partie activité du module Référentiel
 This is the activity module for Referentiel plugin
 
+Référentiel pour Moodle 3.1 avec export du référentiel comme fichier pour les Competency Frameworks / Learning Plans
+Référentiel pour Moodle 3.0 avec barèmes
 Référentiel pour Moodle 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 avec barèmes
 Referentiel for Moodle 2.4, 2.5, 2.6, 2.7, 2.8, 2.9 with scales support
 ---------------------------------------------
+
+Version 10.3 : Moodle 3.1
+
+Version 10.2 : Moodle 2.9 / Moodle 3.0
+
 Version 10.1 for Moodle 2.7, 2.8, 2.9 with scale support, block and report
 Release 2015-07-06
 SQL syntax PostGres
