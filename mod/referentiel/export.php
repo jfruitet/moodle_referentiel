@@ -49,7 +49,7 @@
 
 
     // get display strings
-    $txt = new object;
+    $txt = new stdClass();
     $txt->referentiel = get_string('referentiel','referentiel');
     $txt->download = get_string('download','referentiel');
     $txt->downloadextra = get_string('downloadextra','referentiel');
@@ -311,6 +311,24 @@
         echo $OUTPUT->box_end();
         echo '</div>'."\n";
     }
+
+	if (REFERENTIEL_COMPETENCY){
+        echo '<br /><div align="center"><h3><img src="'.$icon.'" border="0" title="" alt="" /> '.get_string('export_competencies','referentiel').' '.$OUTPUT->help_icon('exportcompetencyh','referentiel').'</h3>'."\n";
+        echo $OUTPUT->box_start('generalbox  boxaligncenter');
+	    echo '<span class="surligne"><a href="'.$CFG->wwwroot.'/mod/referentiel/grade/export_competency_framework.php?d='.$referentiel->id.'">'.get_string('exportcompetencyh','referentiel').'</a></span>'."\n";
+
+/*
+        if (!empty($CFG->core_competency)){   // ce n'est pas la variable correcte !
+            print_string('competency_activation','referentiel');
+        }
+*/
+
+		echo '<br >'.get_string('help_competency','referentiel');
+
+        echo $OUTPUT->box_end();
+        echo '</div>'."\n";
+    }
+
 
     // Liste de sauvegardes déjà enregistrées
     // Gestion des fichiers d'archives

@@ -73,6 +73,9 @@ define('REFERENTIEL_ARCHIVE_OBSOLETE', 7); // Après 7 jours le cron supprime le
 // traitement des activites evaluées par objectifs
 define ('REFERENTIEL_OUTCOMES', 1);   // placer à 0 pour désactiver le traitement
 
+// COMPETENCY FRAMEWORKS activé ?
+define ('REFERENTIEL_COMPETENCY', 1);   // placer à 0 pour désactiver le traitement
+
 // DEBUG ?
 // si à 1 le cron devient très bavard :))
 // et les messages en attente portent sur une semaine au lieu de deux jours.
@@ -1121,7 +1124,7 @@ global $DB;
 			}
 			else {
 				// sinon creer
-				$certificat = new object();
+				$certificat = new stdClass();
 				$certificat->competences_certificat=$competences_certificat;
 				$certificat->competences_activite=$competences_activite;
 				$certificat->commentaire_certificat="";
@@ -1646,7 +1649,7 @@ global $DB;
 	//print_object($form);
     //echo "<br />";
 	// referentiel
-	$certificat = new object();
+	$certificat = new stdClass();
 	$certificat->competences_certificat=$form->competences_certificat;
 	$certificat->commentaire_certificat=$form->commentaire_certificat;
 	$certificat->synthese_certificat=$form->synthese_certificat;
@@ -1711,7 +1714,7 @@ $ok=true;
     */
     // certificat
 	if (isset($form->action) && ($form->action=="modifier_certificat")){
-		$certificat = new object();
+		$certificat = new stdClass();
 		$certificat->id=$form->certificat_id;
 		$certificat->commentaire_certificat=$form->commentaire_certificat;
         $certificat->synthese_certificat=$form->synthese_certificat;
@@ -3072,7 +3075,7 @@ function referentiel_deplace_fichier($dest_path, $source, $dest, $sep, $deplace)
     	    					if (in_array($data->filearea, $fileareas)) {
         							$fullnewpath = '/'.$context->id.'/mod_referentiel/'.$data->filearea.'/'.$data->id.'/'.$filename;
 
-									$file_record=new object();
+									$file_record=new stdClass();
 	                				$file_record->contextid = $context->id;
     	            				$file_record->component='mod_referentiel';
         	        				$file_record->filearea=$data->filearea;
@@ -3211,7 +3214,7 @@ global $DB;
 					$cm = get_coursemodule_from_instance('referentiel', $activite->ref_instance, $activite->ref_course);
 					$context = context_module::instance($cm->id);
 				}
-	            $data_r=new Object();
+	            $data_r=new stdClass();
 				$data_r->id = $doc->id;
 				$data_r->userid = $activite->userid;
 				$data_r->author = referentiel_get_user_info($activite->userid);
@@ -3234,7 +3237,7 @@ global $DB;
 					$cm = get_coursemodule_from_instance('referentiel', $task->ref_instance, $task->ref_course);
 					$context = context_module::instance($cm->id);
 				}
-	            $data_r=new Object();
+	            $data_r=new stdClass();
 				$data_r->id = $doc->id;
 				$data_r->userid = $task->auteurid;
 				$data_r->author = referentiel_get_user_info($task->auteurid);
@@ -3373,7 +3376,7 @@ global $CFG, $USER, $DB, $OUTPUT;
         // echo "<br />";
         if ($formdata->filearea=='document'){
             // gestion d'un fichier à la fois
-            $document = new object();
+            $document = new stdClass();
             $document->url_document='';
             $document->type_document='';
             $document->description_document='';
@@ -3387,7 +3390,7 @@ global $CFG, $USER, $DB, $OUTPUT;
         }
         else if ($formdata->filearea=='consigne'){
             // gestion d'un fichier à la fois
-            $document = new object();
+            $document = new stdClass();
             $document->url_consigne='';
             $document->type_consigne='';
             $document->description_consigne='';
@@ -3433,7 +3436,7 @@ global $CFG, $USER, $DB, $OUTPUT;
         if (!empty($fullpath)){
 
             if (!empty($docid) && ($formdata->filearea=='document') && !empty($formdata->activiteid)){
-                $document = new object();
+                $document = new stdClass();
                 $document->id=$docid;
                 $document->url_document=$fullpath;
                 $document->type_document=substr($formdata->type,0, 20);
@@ -3484,7 +3487,7 @@ global $CFG, $USER, $DB, $OUTPUT;
                 }
             }
             else if (!empty($docid) && ($formdata->filearea=='consigne')  && !empty($formdata->activiteid)){
-                $document = new object();
+                $document = new stdClass();
                 $document->id=$docid;
                 $document->url_consigne=$fullpath;
                 $document->type_consigne=substr($formdata->type,0, 20);

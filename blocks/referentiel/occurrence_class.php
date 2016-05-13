@@ -285,7 +285,7 @@ class occurrence {
 	// -----------------------
 	function new_occurrence(){
         global $USER;
-        $an_occurrence= new Object();
+        $an_occurrence= new stdClass();
         $an_occurrence->id=0;
 		$an_occurrence->name="";
     	$an_occurrence->code_referentiel="";

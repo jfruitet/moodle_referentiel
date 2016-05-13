@@ -229,7 +229,7 @@ function referentiel_get_ref_etablissement($userid, $updateprofil=0){
                         $ref_etablissement=$etablissement->id;
 					}
 					else{ // creer l'etablissement
-						$etablissement = new object();
+						$etablissement = new stdClass();
                         $etablissement->nom_etablissement= $name_etablissement;
 						if (!empty($num_etablissement)){
                             $etablissement->num_etablissement= $num_etablissement;
@@ -247,7 +247,7 @@ function referentiel_get_ref_etablissement($userid, $updateprofil=0){
                         $ref_etablissement=$etablissement->id;
 					}
 					else{ // creer l'etablissement
-						$etablissement = new object();
+						$etablissement = new stdClass();
                         if (!empty($name_etablissement)){
 							$etablissement->nom_etablissement= $name_etablissement;
 						}
@@ -290,7 +290,7 @@ function referentiel_add_etudiant_user($userid){
 // retourne l'id cree
 global $DB;
 	if ($userid){
-    	$record=new object();
+    	$record=new stdClass();
         $record->userid=$userid;
         // $record->ddn_etudiant = 'l_inconnu';
         $record->ddn_etudiant = referentiel_get_student_ddn($userid);
@@ -397,7 +397,7 @@ function referentiel_add_etudiant($form) {
 global $DB;
 global $USER;
 $id=0;
-	$record=new object();
+	$record=new stdClass();
 	$record->num_etudiant = $form->num_etudiant;
 	$record->ddn_etudiant = $form->ddn_etudiant ;
 	$record->lieu_naissance = ($form->lieu_naissance);
@@ -440,7 +440,7 @@ global $DB;
     // echo "<br />";
 	// certificat
     if (isset($form->action) && ($form->action=="modifier_etudiant")){
-		$record=new object();
+		$record=new stdClass();
 		$record->id = $form->etudiant_id;
 		$record->num_etudiant = $form->num_etudiant;
 		$record->ddn_etudiant = ($form->ddn_etudiant) ;
@@ -536,7 +536,7 @@ global $DB;
 // creer un etablissement
 $id=0;
 	if (isset($form->action) && ($form->action=="creer_etablissement")){
-		$record=new object();
+		$record=new stdClass();
 		$record->num_etablissement = ($form->num_etablissement);
 		$record->nom_etablissement = ($form->nom_etablissement);
 		$record->adresse_etablissement = ($form->adresse_etablissement);
@@ -557,7 +557,7 @@ global $DB;
 // MAJ etablissement
 $ok=true;
 	if (isset($form->action) && ($form->action=="modifier_etablissement")){
-		$record=new object();
+		$record=new stdClass();
 		$record->id = $form->etablissement_id;
 		$record->num_etablissement = ($form->num_etablissement);
 		$record->nom_etablissement = ($form->nom_etablissement);
@@ -650,7 +650,7 @@ global $DB;
  **/
 function referentiel_genere_etablissement(){
 global $DB;
-	$record=new object();
+	$record=new stdClass();
 	$record->num_etablissement = 'l_inconnu';
 	$record->nom_etablissement = 'l_inconnu';
 	$record->adresse_etablissement = 'l_inconnu';

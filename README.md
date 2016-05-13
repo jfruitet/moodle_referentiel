@@ -5,16 +5,16 @@ Referentiel plugin (mod / block / report) for Moodle  2.9, 3.0 (and maybe furthe
 
 ## Module Moodle - Référentiel / Skills repository - Documentation
 
-jean.fruitet@univ-nantes.fr   (jusqu'en 2016)
-jean.fruitet@free.fr (après 2016)
+jean.fruitet@univ-nantes.fr   (jusqu'en décembre 2015)
+jean.fruitet@free.fr (après 2015)
 
-2007/2015
+2007/2016
 
 Type: Activity Module
 
 Requires: Moodle 2.9
 
-Avalaible: Moodle 2.9, 3.0
+Avalaible: Moodle 2.9, 3.0, 3.1
 
 Status: Contributed
 
@@ -35,6 +35,7 @@ Ce module permet :
 * Si le site active les Objectifs, vous pouvez exporter le référentiel sous forme d'une
 liste d'objectifs qui serviront alors à évaluer toute forme d'activité(forum, BD, devoir, etc.).
 Ces notations sont récupérées dans le module référentiel sous forme de compétences validées dans des déclaration d'activité.
+* A pertir de la verion Moodle 3.1 vous pouvez exporter le référentiel au format  "Competency Framework CSV file format" pour intégration dans les Plans de formation.
 
 #### Pour utiliser pleinement cette version installez les composants suivants dans leurs dossiers respectifs
 
@@ -45,6 +46,8 @@ Ces notations sont récupérées dans le module référentiel sous forme de comp
 ./report/referentiel
 
 Lisez la [documentation d'installation détaillée] (http://moodlemoot2012.unimes.fr/mod/resource/view.php?id=882 "Installation" après Connexion anonyme )
+
+http://jfreferentiels.blogspot.fr/2015_10_01_archive.html
 
 ### PRESENTATION (English)
 
@@ -59,13 +62,12 @@ You can:
 * export an print certificates
 * If your site enables Outcomes (also known as Competencies, Goals, Standards or Criteria), you can now export a list of Outcomes from referentiel module then grade things using
 that scale (forum, database, assigments, etc.) throughout the site. Then these evaluations will be integrated in the Referentiel instance of the course.
-
+* You ca export the Skills repository to Competency Framework CSV file format
 
 ### Sources
 
-[Moodle 2.7, 2.8] (https://github.com/jfruitet/moodle_referentiel_m27)
-
-[Moodle 2.9, 3.0 and further] (https://github.com/jfruitet/moodle_referentiel)
+[Moodle 3.1 and further] (https://github.com/jfruitet/moodle_referentiel, master branch)
+[Moodle 2.9, 3.0 ] (https://github.com/jfruitet/moodle_referentiel, moodle29 branch)
 
 ### Installation
 
@@ -81,13 +83,6 @@ Read the [install documentation] (http://moodlemoot2012.unimes.fr/mod/resource/v
 
 ### Documentation
 
-English: https://docs.moodle.org/30/en/mod/referentiel/view
-
-Look at
-./mod/referentiel/documentation directory on your Moodle server
-
-French : https://docs.moodle.org/2x/fr/mod/referentiel/view
-
 MoodleMoot francophones
 [MoodleMoot 2012] (http://moodlemoot2012.unimes.fr/course/view.php?id=33) Connexion anonyme
 
@@ -95,6 +90,8 @@ Le dossier
 ./mod/referentiel/documentation
 sur votre serveur Moodle contient une documentation élémentaire
 
+Look at
+./mod/referentiel/documentation directory on your Moodle server
 
 ### Blog
 [Les Référentiels de compétence] (http://jfreferentiels.blogspot.fr/)

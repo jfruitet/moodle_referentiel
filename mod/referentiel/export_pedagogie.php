@@ -119,7 +119,7 @@ CONSTRAINT  PRIMARY KEY (id)
 
 
     // get display strings
-    $txt = new object;
+    $txt = new stdClass();
     $txt->referentiel = get_string('referentiel','referentiel');
     $txt->download = get_string('download','referentiel');
     $txt->downloadextra = get_string('downloadextra','referentiel');

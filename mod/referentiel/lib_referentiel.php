@@ -38,7 +38,7 @@
  **/
 function referentiel_get_labels($instance){
 global $DB;
-    $label=new object();
+    $label=new stdClass();
     $label->domaine=get_string('domaine', 'referentiel');
     $label->competence=get_string('competence', 'referentiel');
     $label->item=get_string('item', 'referentiel');
@@ -83,7 +83,7 @@ global $DB;
  **/
 function referentiel_get_labels_occurrence($refrefid){
 global $DB;
-    $label=new object();
+    $label=new stdClass();
     $label->domaine=get_string('domaine', 'referentiel');
     $label->competence=get_string('competence', 'referentiel');
     $label->item=get_string('item', 'referentiel');
@@ -113,7 +113,7 @@ global $DB;
  **/
 function referentiel_get_labels_instance($instanceid){
 global $DB;
-    $label=new object();
+    $label=new stdClass();
     $label->domaine=get_string('domaine', 'referentiel');
     $label->competence=get_string('competence', 'referentiel');
     $label->item=get_string('item', 'referentiel');
@@ -143,7 +143,7 @@ global $DB;
 	// echo "<br />";
 	if (isset($form->referentiel_id) && ($form->referentiel_id>0)){
 			// referentiel
-			$referentiel_referentiel = new object();
+			$referentiel_referentiel = new stdClass();
 			$referentiel_referentiel->name=($form->name);
 			$referentiel_referentiel->code_referentiel=($form->code_referentiel);
 			$referentiel_referentiel->description_referentiel=($form->description_referentiel);
@@ -279,7 +279,7 @@ global $DB;
 	if (isset($form->name) && ($form->name!="")
 		&& isset($form->code_referentiel) && ($form->code_referentiel!="")){
 		// creer
-		$referentiel_referentiel = new object();
+		$referentiel_referentiel = new stdClass();
 		$referentiel_referentiel->name=($form->name);
 		$referentiel_referentiel->code_referentiel=($form->code_referentiel);
 		$referentiel_referentiel->description_referentiel=($form->description_referentiel);
@@ -369,7 +369,7 @@ global $DB;
                 referentiel_associe_referentiel_instance($form->instance, $referentiel_referentiel_id);
 			}
 			else{
-        		$referentiel = new object();
+        		$referentiel = new stdClass();
 	       		$referentiel->name=($form->name_instance);
     			$referentiel->description_instance=($form->description_instance);
                 $referentiel->label_domaine=($form->label_domaine);
@@ -386,7 +386,7 @@ global $DB;
 			}
 			******************************************* */
 			// saisie du domaine
-			$domaine = new object();
+			$domaine = new stdClass();
 			$domaine->ref_referentiel=$referentiel_referentiel_id;
 			if (empty($form->code_domaine)){
                 $form->code_domaine=get_string('c_domaine','referentiel').'.'.$form->num_domaine;
@@ -428,7 +428,7 @@ global $DB;
 			$domaine_id = $DB->insert_record("referentiel_domaine", $domaine);
     		// echo "DOMAINE ID / $domaine_id<br />";
 			if ($domaine_id>0){
-				$competence = new object();
+				$competence = new stdClass();
 				$competence->ref_domaine=$domaine_id;
                 if (empty($form->code_competence)){
                     $form->code_competence=get_string('c_competence','referentiel').'.'.$form->num_domaine.'.'.$form->num_competence;
@@ -470,7 +470,7 @@ global $DB;
 				$competence_id = $DB->insert_record("referentiel_competence", $competence);
 		    	// echo "COMPETENCE ID / $competence_id<br />";
 				if ($competence_id>0){
-					$item = new object();
+					$item = new stdClass();
 					$item->ref_referentiel=$referentiel_referentiel_id;
 					$item->ref_competence=$competence_id;
           if (empty($form->code_item)){
@@ -537,7 +537,7 @@ global $DB;
 	if (!empty($form->referentiel_id)){
 		if (isset($form->action) && ($form->action=="modifierreferentiel")){
 			// referentiel
-			$referentiel_referentiel = new object();
+			$referentiel_referentiel = new stdClass();
 			$referentiel_referentiel->name=($form->name);
 			$referentiel_referentiel->code_referentiel=($form->code_referentiel);
 			$referentiel_referentiel->description_referentiel=($form->description_referentiel);
@@ -616,7 +616,7 @@ global $DB;
 		else if (isset($form->action) && ($form->action=="completerreferentiel")){
 			if (isset($form->domaine_id) && is_array($form->domaine_id)){
 				for ($i=0; $i<count($form->domaine_id); $i++){
-					$domaine = new object();
+					$domaine = new stdClass();
 					$domaine->id=$form->domaine_id[$i];
 					$domaine->ref_referentiel=$form->referentiel_id;
 					$oldcode=$form->oldcode[$i];
@@ -666,7 +666,7 @@ global $DB;
 			// NOUVEAU DOMAINE
 			if (isset($form->new_code_domaine) && is_array($form->new_code_domaine)){
 				for ($i=0; $i<count($form->new_code_domaine); $i++){
-					$domaine = new object();
+					$domaine = new stdClass();
 					$domaine->ref_referentiel=$form->referentiel_id;
 					$domaine->code_domaine=($form->new_code_domaine[$i]);
 					$domaine->description_domaine=($form->new_description_domaine[$i]);
@@ -709,7 +709,7 @@ global $DB;
 			// COMPETENCES
 			if (isset($form->competence_id) && is_array($form->competence_id)){
 				for ($i=0; $i<count($form->competence_id); $i++){
-					$competence = new object();
+					$competence = new stdClass();
 					$competence->id=$form->competence_id[$i];
                     $oldcode=$form->oldcode[$i];
 					$competence->code_competence=($form->code_competence[$i]);
@@ -755,7 +755,7 @@ global $DB;
 			// NOUVElle competence
 			if (isset($form->new_code_competence) && is_array($form->new_code_competence)){
 				for ($i=0; $i<count($form->new_code_competence); $i++){
-					$competence = new object();
+					$competence = new stdClass();
 					$competence->code_competence=($form->new_code_competence[$i]);
 					$competence->description_competence=($form->new_description_competence[$i]);
 					$competence->ref_domaine=$form->new_ref_domaine[$i];
@@ -799,7 +799,7 @@ global $DB;
 			// ITEM COMPETENCES
 			if (isset($form->item_id) && is_array($form->item_id)){
 				for ($i=0; $i<count($form->item_id); $i++){
-					$item = new object();
+					$item = new stdClass();
 					$item->id=$form->item_id[$i];
 					$item->ref_referentiel=$form->referentiel_id;
 					$item->ref_competence=$form->ref_competence[$i];
@@ -828,7 +828,7 @@ global $DB;
 			// NOUVEL item
 			if (isset($form->new_code_item) && is_array($form->new_code_item)){
 				for ($i=0; $i<count($form->new_code_item); $i++){
-					$item = new object();
+					$item = new stdClass();
 					$item->ref_referentiel=$form->referentiel_id;
 					$item->ref_competence=$form->new_ref_competence[$i];
 					$item->code_item=($form->new_code_item[$i]);
@@ -966,7 +966,7 @@ global $USER;
     // echo "<br />";
 
 	// referentiel
-	$referentiel_referentiel = new object();
+	$referentiel_referentiel = new stdClass();
 	$referentiel_referentiel->name=($form->name);
 	$referentiel_referentiel->code_referentiel=($form->code_referentiel);
 	$referentiel_referentiel->description_referentiel=($form->description_referentiel);
@@ -1077,7 +1077,7 @@ function referentiel_update_referentiel($form) {
 	$ok=false;
 	if (isset($form->referentiel_id) && ($form->referentiel_id>0)){
 		// referentiel
-		$referentiel = new object();
+		$referentiel = new stdClass();
 		$referentiel->name=addslashes($form->name);
 		$referentiel->code_referentiel=addslashes($form->code_referentiel);
 		$referentiel->description_referentiel=addslashes($form->description_referentiel);
@@ -1269,7 +1269,7 @@ function referentiel_add_domaine($form) {
 
 	// NOUVEAU DOMAINE
 	if (isset($form->new_code_domaine) && ($form->new_code_domaine!="")){
-		$domaine = new object();
+		$domaine = new stdClass();
 		if (isset($form->reference_id)){
 			$domaine->ref_referentiel=$form->reference_id;
       	}
@@ -1445,7 +1445,7 @@ function referentiel_add_competence($form) {
 			$ref_referentiel=$form->instance;
 		}
 
-		$competence = new object();
+		$competence = new stdClass();
 		if (empty($form->new_description_competence)){
         	$form->new_description_competence=get_string('a_completer', 'referentiel');
       	}
@@ -1717,7 +1717,7 @@ function referentiel_add_item($form) {
 		if (isset($form->occurrence)){ $ref_referentiel=$form->occurrence;}
 		else if (isset($form->instance)){ $ref_referentiel=$form->instance;}
 
-		$item = new object();
+		$item = new stdClass();
 		$item->ref_referentiel=$ref_referentiel;
 		$item->ref_competence=$form->new_ref_competence;
 

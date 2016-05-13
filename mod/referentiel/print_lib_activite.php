@@ -351,13 +351,13 @@ $record_id_users=array();
 				// recopier
 				$record_id_users=array();
 				foreach ($record_users  as $record_id){
-					$a = new Object();
+					$a = new stdClass();
 					$a->userid=$record_id;
 					$record_id_users[]=$a;
 				}
 			}
 			// Add current user to display his/her activities declarations - Ajouter l'utilisateur courant pour qu'il voit ses activites
-			$a = new Object();
+			$a = new stdClass();
 			$a->userid=$USER->id;
 			$record_id_users[]=$a;
         	// DEBUG
@@ -395,7 +395,7 @@ $record_id_users=array();
 			// recopier
 			$record_id_users=array();
 			foreach ($record_users  as $record_id){
-				$a = new Object();
+				$a = new stdClass();
 				$a->userid=$record_id;
 				$record_id_users[]=$a;
 			}
@@ -406,14 +406,14 @@ $record_id_users=array();
             $t_users_select=explode('_', $userids);
             $record_id_users=array();
             foreach($t_users_select as $userid){
-				$a = new Object();
+				$a = new stdClass();
 				$a->userid=$userid;
 				$record_id_users[]=$a;
             }
         }
 		else if (empty($record_id_users) && ($userid_filtre!=0) && ($userid_filtre==$USER->id)){
 			// Ajouter l'utilisateur courant pour qu'il puisse voir ses propres activites
-			$a = new Object();
+			$a = new stdClass();
 			$a->userid=$USER->id;
 			$record_id_users[]=$a;
 		}
@@ -423,7 +423,7 @@ $record_id_users=array();
 		// seulement l'utilisateur courant
 		if (($userid_filtre==$USER->id) || ($userid_filtre==0)){
 			// Ajouter l'utilisateur courant pour qu'il puisse voir ses propres activites
-			$a = new Object();
+			$a = new stdClass();
 			$a->userid=$USER->id;
 			$record_id_users[]=$a;
 		}
@@ -511,7 +511,7 @@ $t_users_lastname=array();
 	if ($records_id_users){
 		foreach ($records_id_users as $record_user) {   // initialiser
         	if (!empty($record_user->userid)){
-				$a = new Object();
+				$a = new stdClass();
 				$a->activitynumber = 0;
             	$a->userid = $record_user->userid;
 				$recs[$record_user->userid]=$a;
@@ -1302,7 +1302,7 @@ if (!empty($bareme)){
 					// affichage de l'url
 					if (preg_match('/moddata\/referentiel/',$url_document)){
 			    			// l'URL doit être transformée
-                    		$data_r=new Object();
+                    		$data_r=new stdClass();
 							$data_r->id = $document_id;
 							$data_r->userid = $userid;
 							$data_r->author = $user_info;
@@ -2261,7 +2261,7 @@ function referentiel_get_liens_documents($activite_id, $userid, $context){
 			// affichage de l'url
 			if (preg_match('/moddata\/referentiel/',$url_document)){
 			    // l'URL doit être transformée
-                $data_r=new Object();
+                $data_r=new stdClass();
 				$data_r->id = $document_id;
 				$data_r->userid = $userid;
 				$data_r->author = referentiel_get_user_info($userid);

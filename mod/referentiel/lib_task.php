@@ -205,7 +205,7 @@ global $USER;
 	// print_object($form);
     // echo "<br />";
 	// referentiel
-	$task = new object();
+	$task = new stdClass();
 	$task->type_task=($form->type_task);
 	$task->description_task=($form->description_task);
 	if (isset($form->code_item)){
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `mdl_referentiel_consigne` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='consigne' AUTO_INCREMENT=1 ;
 	*/
-		$consigne = new object();
+		$consigne = new stdClass();
 		$consigne->url_consigne=$form->url_consigne;
 		$consigne->type_consigne=substr($form->type_consigne,0,20);
 		$consigne->description_consigne=$form->description_consigne;
@@ -348,7 +348,7 @@ $ok=true;
 	
 	if (isset($form->action) && ($form->action=="modifier_task")){
 		// task
-		$task = new object();
+		$task = new stdClass();
 		$task->id=($form->taskid);
 		$task->type_task=($form->type_task);
 		$task->description_task=($form->description_task);
@@ -414,7 +414,7 @@ $ok=true;
 	    // echo "DEBUG :: lib_task.php :: 350 :: task ID : $task->id<br />";
 	}
 	else if (isset($form->action) && ($form->action=="modifier_consigne")){
-		$consigne = new object();
+		$consigne = new stdClass();
 		$consigne->id=$form->consigne_id;
 		$consigne->url_consigne=($form->url_consigne);
 		$consigne->type_consigne=substr($form->type_consigne,0,20);
@@ -441,7 +441,7 @@ $ok=true;
 		// exit;
 	}
 	else if (isset($form->action) && ($form->action=="creer_consigne")){
-		$consigne = new object();
+		$consigne = new stdClass();
 		$consigne->url_consigne=($form->url_consigne);
 		$consigne->type_consigne=substr($form->type_consigne,0,20);
 		$consigne->description_consigne=($form->description_consigne);
@@ -486,7 +486,7 @@ global $DB;
 	// print_object($form);
     // echo "<br />";
 	if (!empty($form->consigne_id) && !empty($form->ref_task)){
-		$consigne = new object();
+		$consigne = new stdClass();
 		$consigne->id=$form->consigne_id;
 		$consigne->url_consigne=($form->url_consigne);
 		$consigne->type_consigne=substr($form->type_consigne,0,20);
@@ -526,7 +526,7 @@ function referentiel_add_consigne($form) {
 global $DB;
 	$id_consigne=0;
 	if (!empty($form->ref_task)){
-		$consigne = new object();
+		$consigne = new stdClass();
 		$consigne->url_consigne=$form->url_consigne;
 		$consigne->type_consigne=substr($form->type_consigne,0,20);
 		$consigne->description_consigne=$form->description_consigne;
@@ -723,7 +723,7 @@ global $USER;
 			$t_record = $DB->get_record("referentiel_task", array("id" => "$ref_task"));
 			if ($t_record){
 				// Creer l'activite
-				$activite = new object();
+				$activite = new stdClass();
 				$activite->type_activite='['.get_string('task','referentiel').' '.$ref_task.'] '.($t_record->type_task);
 				$activite->competences_activite=($t_record->competences_task);
 				$activite->description_activite='['.get_string('consigne_task','referentiel').' (<i>'.referentiel_get_user_info($t_record->auteurid).'</i>) : '.($t_record->description_task).']';
@@ -770,7 +770,7 @@ global $USER;
 
 				if ($activite_id){
 					referentiel_regenere_certificat_user($activite->userid, $activite->ref_referentiel);
-					$record_association = new object();
+					$record_association = new stdClass();
 					$record_association->ref_user=$ref_user;
 					$record_association->ref_task=$ref_task;
 					$record_association->ref_activite=$activite_id;

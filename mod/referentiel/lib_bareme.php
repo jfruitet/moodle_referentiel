@@ -409,7 +409,7 @@ $table = new html_table();
 // -----------------------
 function referentiel_scale_2_bareme($scale){
     if (!empty($scale)){
-        $bareme= new Object();
+        $bareme= new stdClass();
         $bareme->scaleid=$scale->id;
         $bareme->name=$scale->name;
         $bareme->scale=$scale->scale;
@@ -468,7 +468,7 @@ global $DB;
 			}
         }
 		if (!$ok){	// Pas d'association : il faut la creer
-            $rec=new Object();
+            $rec=new stdClass();
             $rec->refscaleid=$bareme->id;
             $rec->refrefid=$occurrence_id;
             $rec->timemodified=time();
@@ -514,7 +514,7 @@ global $DB;
 			}
         }
 		if (!$ok){	// Pas d'association : il faut la creer
-            $rec=new Object();
+            $rec=new stdClass();
             $rec->refscaleid=$bareme->id;
             $rec->refrefid=$occurrence_id;
             $rec->timemodified=time();
@@ -1229,7 +1229,7 @@ global $DB;
 		}
 		else{
 	    	// creation
-			$rec=new Object();
+			$rec=new stdClass();
 			$rec->activiteid= $activite_id;
 			$rec->refscaleid= $baremeid;
 			$rec->competences_bareme= $liste_evaluations;			
@@ -1312,7 +1312,7 @@ global $DB;
         }
        	// creation
        	
-		$rec=new Object();
+		$rec=new stdClass();
 		$rec->activiteid= $activite->id;
 		$rec->refscaleid= $bareme->id;
 		$rec->competences_bareme= $liste_evaluations;

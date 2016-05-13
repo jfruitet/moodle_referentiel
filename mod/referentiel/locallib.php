@@ -399,7 +399,7 @@ global $DB;
 	// print_object($form);
     // echo "<br />";
 	// referentiel
-	$activite = new object();
+	$activite = new stdClass();
 	$activite->type_activite=($form->type_activite);
 	if (!empty($form->code_item)){
 		$activite->competences_activite=reference_conversion_code_2_liste_competence('/', $form->code_item);
@@ -453,7 +453,7 @@ global $DB;
 				(isset($form->description_document) && !empty($form->description_document))
 			)
 	){
-		$document = new object();
+		$document = new stdClass();
 		$document->url_document=($form->url_document);
 		$document->type_document=substr($form->type_document,0,20);
 		$document->description_document=($form->description_document);
@@ -508,7 +508,7 @@ $ok=true;
 		}
 
 		// activite
-		$activite = new object();
+		$activite = new stdClass();
 		$activite->id=$form->activite_id;
 		$activite->type_activite=($form->type_activite);
 		// Modif jf 2013/12/11
@@ -582,7 +582,7 @@ $ok=true;
 		}
 	}
 	else if (isset($form->action) && ($form->action=="modifier_document")){
-		$document = new object();
+		$document = new stdClass();
 		$document->id=$form->document_id;
 		$document->url_document=($form->url_document);
 		$document->type_document=substr($form->type_document,0,20);
@@ -621,7 +621,7 @@ $ok=true;
 		// exit;
 	}
 	else if (isset($form->action) && ($form->action=="creer_document")){
-		$document = new object();
+		$document = new stdClass();
 		$document->url_document=($form->url_document);
 		$document->type_document=substr($form->type_document,0,20);
 		$document->description_document=($form->description_document);
@@ -672,7 +672,7 @@ global $USER;
 	if (isset($form->document_id) && $form->document_id
 		&&
 		isset($form->ref_activite) && $form->ref_activite){
-		$document = new object();
+		$document = new stdClass();
 		$document->id=$form->document_id;
 		$document->url_document=($form->url_document);
 		$document->type_document=substr($form->type_document,0,20);
@@ -719,7 +719,7 @@ global $DB;
 global $USER;
 	$id_document=0;
 	if (isset($form->ref_activite) && $form->ref_activite){
-		$document = new object();
+		$document = new stdClass();
 		$document->url_document=($form->url_document);
 		$document->type_document=substr($form->type_document,0,20);
 		$document->description_document=($form->description_document);

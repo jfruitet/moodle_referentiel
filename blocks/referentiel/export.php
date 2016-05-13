@@ -51,7 +51,7 @@ $exportfilename = optional_param('exportfilename','',PARAM_FILE );
 $format = optional_param('format','', PARAM_FILE );
 
 // get display strings
-$txt = new object;
+$txt = new stdClass();
 $txt->referentiel = get_string('referentiel','referentiel');
 $txt->download = get_string('download','referentiel');
 $txt->downloadextra = get_string('downloadextra','referentiel');
@@ -243,6 +243,25 @@ $occurrence_object->tabs($mode, $currenttab);
         echo '</div>'."\n";
     }
 
+    if (REFERENTIEL_COMPETENCY){
+        echo '<br /><div align="center"><h3><img src="'.$icon.'" border="0" title="" alt="" /> '.get_string('export_competencies','block_referentiel').' '.$OUTPUT->help_icon('exportcompetencyh','block_referentiel').'</h3>'."\n";
+        //echo $OUTPUT->box_start('generalbox  boxaligncenter');
+
+        /*
+		if (!empty($CFG->enableoutcomes)){
+        */
+		    echo '<span class="surligne"><a href="'.$CFG->wwwroot.'/blocks/referentiel/export_competency_framework.php?blockid='.$blockid.'&amp;courseid='.$courseid.'&amp;occurrenceid='.$occurrence_object->referentiel->id.'">'.get_string('exportcompetencyh','block_referentiel').'</a></span>'."\n";
+        /*
+		}
+        else{
+            print_string('activer_outcomes','referentiel');
+        }
+        */
+		echo '<br >'.get_string('help_competency','block_referentiel');
+
+        //echo $OUTPUT->box_end();
+        echo '</div>'."\n";
+    }
 
 echo $OUTPUT->footer();
 

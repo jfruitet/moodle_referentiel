@@ -1,12 +1,6 @@
 <?php
 // referentiel module
 //
-$string['competency_activation'] = 'Competencies are not activated on this Moodle!';
-$string['export_competencies'] = 'Competency Based Education and Learning Plans';
-$string['exportcompetencyh'] = 'Export the skills repository as a CSV file for Competency Frameworks & Learning Plans';
-$string['exportcompetencyh_help'] = 'This file may be imported in Competency tool for Learning Plans ["Competency Frameworks"]';
-$string['help_competency'] = 'Export all the domains, competencies and items as a CSV file comma separated for Learning Plans management.';
-
 $string['passdelete'] = 'Erase any password for this occurrence of skills repository';
 $string['passnonexists'] = 'This occurrence of skills repository is not protected by a password';
 

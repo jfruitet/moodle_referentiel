@@ -15,7 +15,7 @@
     $sql_f_order=optional_param('sql_f_order','', PARAM_ALPHA);
     $sql_f_user=optional_param('sql_f_user','', PARAM_ALPHA);
 
-	$data_f= new Object(); // parametres de filtrage
+	$data_f= new stdClass(); // parametres de filtrage
 	
 	// Activites
 	if (isset($f_validation)){

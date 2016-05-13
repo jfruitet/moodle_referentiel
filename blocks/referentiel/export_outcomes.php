@@ -233,7 +233,7 @@ function referentiel_get_outcomes($occurrence){
                                         $desc_item=mb_substr($desc_item, 0, strrpos($desc_item," "));
                                         $desc_item.=' (...)';
                                     }
-                                    $outcome= new object();
+                                    $outcome= new stdClass();
                                     $outcome->name=$code_referentiel.' '.$code_item.' :: '.$desc_item;
                                     $outcome->shortname=$code_item;
                                     $outcome->description=$description_item;
@@ -256,7 +256,7 @@ function referentiel_get_outcomes($occurrence){
 function referentiel_get_scale_info($occurrenceid){
 global $CFG;
 global $DB;
-    $scale_info = new Object();
+    $scale_info = new stdClass();
 	// Default values
 	$scale_info->name = get_string('nom_bareme','referentiel');
     $scale_info->grades = get_string('bareme','referentiel');

@@ -53,7 +53,7 @@
     $cancel = optional_param('cancel', 0, PARAM_BOOL);
     
     // get display strings
-    $txt = new object;
+    $txt = new stdClass();
 
     $txt->choisir = get_string('choisir','referentiel');
     $txt->condense = get_string('format_condense','referentiel');
@@ -187,8 +187,8 @@
 
                 echo "<p><div class=\"boxaligncenter\"><a href=\"$efile\">$txt->download</a></div></p>";
                 echo "<p><div class=\"boxaligncenter\"><font size=\"-1\">$txt->downloadextra</font></div></p>";
-                // print_continue("$base_url/index.php");
-                echo $OUTPUT->continue_button("$base_url/index.php");
+    // print_continue("$base_url/index.php");
+    echo $OUTPUT->continue_button("$base_url/index.php");
                 echo $OUTPUT->footer();
                 die();
             }

@@ -52,6 +52,61 @@ function referentiel_get_import_export_formats( $type, $classprefix="" ) {
    return $fileformatnames;
 }
 
+/**
+* Create default export filename
+*
+* @return string   default export filename
+* @param object $course
+* @param object $referentiel
+* @param string $info
+*/
+function referentiel_export_filename($name, $info="") {
+    //Take off some characters in the filename !!
+    $takeoff = array(" ", ":", "/", "\\", "|");
+
+    $core_text = new core_text();
+    $export_word = str_replace($takeoff,"_", $core_text::strtolower(get_string("exportfilename","referentiel")));
+    //If non-translated, use "export"
+    if (substr($export_word,0,1) == "[") {
+        $export_word= "export";
+    }
+
+    //Calculate the date format string
+    $export_date_format = str_replace(" ","_",get_string("exportnameformat","referentiel"));
+    //If non-translated, use "%Y%m%d-%H%M"
+    if (substr($export_date_format,0,1) == "[") {
+        $export_date_format = "%Y%m%d-%H%M";
+    }
+
+    //Calculate the shortname
+    $export_shortname = clean_filename($name);
+    if (empty($export_shortname) or $export_shortname == '_' ) {
+        $export_shortname = rand();
+    }
+
+    //Calculate the final export filename
+    //The export word
+    $export_name = $export_word."-";
+    //The shortname
+    $export_name .= referentiel_purge_accents($export_shortname)."-";
+	if ($info){
+		$export_name .= referentiel_purge_accents(clean_filename($info))."-";
+	}
+
+	// DEBUG
+	//echo "<br />DEBUG :: import_export_l_b.php :: 99 <br />$export_name<br />$export_date_format\n";
+
+    //The date format
+    // $export_name .= date("Ymd_Hgs");
+    $export_name .= userdate(time(),$export_date_format,99,false);
+    //The extension - no extension, supplied by format
+    // $export_name .= ".txt";
+
+	//echo "<br />APRES FORMATAGE / $export_name\n";
+    //exit;
+    return $export_name;
+}
+
 
 /**
 * Create default export filename

@@ -223,7 +223,7 @@
                 foreach ($form['tdomaine_id'] as $id_domaine){
                     // echo "<br />ID :: ".$id_domaine."\n";
                     // exit;
-                    $form2= new Object();
+                    $form2= new stdClass();
                     $form2->domaine_id=$id_domaine;
         		    $form2->type_domaine=$form['type_domaine_'.$id_domaine];
         		    $form2->minima_domaine=$form['minima_domaine_'.$id_domaine];
@@ -270,7 +270,7 @@
                 foreach ($form['tcompetence_id'] as $id_competence){
                     // echo "<br />ID :: ".$id_competence."\n";
                     //
-                    $form2= new Object();
+                    $form2= new stdClass();
                     $form2->competence_id=$id_competence;
         		    $form2->type_competence=$form['type_competence_'.$id_competence];
         		    $form2->minima_competence=$form['minima_competence_'.$id_competence];
@@ -318,7 +318,7 @@
                 foreach ($form['titem_id'] as $id_item){
                     // echo "<br />ID :: ".$id_item."\n";
                     //
-                    $form2= new Object();
+                    $form2= new stdClass();
                     $form2->item_id=$id_item;
         		    $form2->type_item=$form['type_item_'.$id_item];
                     $form2->num_item=$form['num_item_'.$id_item];
@@ -363,7 +363,7 @@
 			if (!empty($form['tnewitem_id'])){
                 foreach ($form['tnewitem_id'] as $index_item){
                     // echo "<br />ID :: ".$index_item."\n";
-                    $form2= new Object();
+                    $form2= new stdClass();
 
                     $form2->new_type_item=$form['new_type_item_'.$index_item];
 					$form2->new_ref_competence=$form['new_ref_competence_'.$index_item];
@@ -411,7 +411,7 @@
 			if (!empty($form['tnewcompetence_id'])){
                 foreach ($form['tnewcompetence_id'] as $index_competence){
                     // echo "<br />ID :: ".$index_competence."\n";
-                    $form2= new Object();
+                    $form2= new stdClass();
                     if (isset($form['new_code_competence_'.$index_competence])){
                         $form2->new_code_competence=$form['new_code_competence_'.$index_competence];
                     }
@@ -459,7 +459,7 @@
 			if (!empty($form['tnewdomaine_id'])){
                 foreach ($form['tnewdomaine_id'] as $index_domaine){
                     // echo "<br />ID :: ".$index_domaine."\n";
-                    $form2= new Object();
+                    $form2= new stdClass();
                     if (isset($form['new_code_domaine_'.$index_domaine])){
                         $form2->new_code_domaine=$form['new_code_domaine_'.$index_domaine];
                     }

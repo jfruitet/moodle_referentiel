@@ -61,7 +61,7 @@
     $filtre_date_modif_student = optional_param('filtre_date_modif_student', 0, PARAM_INT);
     $filtre_auteur = optional_param('filtre_auteur', 0, PARAM_INT);
 
-	$data_filtre= new Object(); // parametres de filtrage
+	$data_filtre= new stdClass(); // parametres de filtrage
 	if (isset($filtre_validation)){
 			$data_filtre->filtre_validation=$filtre_validation;
 	}

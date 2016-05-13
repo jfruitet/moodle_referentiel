@@ -24,6 +24,13 @@
  */
 
 
+$string['export_competencies'] = 'Apprentissage par Compétences et Plans de formation';
+$string['exportcompetencyh'] = 'Exporter le référentiel au format "Competency Frameworks"';
+$string['exportcompetencyh_help'] = 'Générer un fichier CSV pour ré-importation dans les Plan de Formation ["Competency Frameworks"]';
+$string['help_competency'] = 'Générer un fichier au format CSV permettant de ré-importer celui-ci pour la gestion des Plans de formation.';
+
+$string['passdelete'] = 'Supprimer tous les mots de passe';
+
 $string['addoccurrence'] = 'Créer un Référentiel';
 $string['bareme'] = 'Barème';
 $string['check_competency'] = 'Seules les compétences cochées sont réenregistrés...';

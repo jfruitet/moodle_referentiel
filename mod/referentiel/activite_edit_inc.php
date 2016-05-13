@@ -368,7 +368,7 @@ echo '<input type="radio" name="mailnow" value="1" />'.get_string('yes').' &nbsp
 				$etiquette_document = $record_d->etiquette_document; // etiquette
 				if (preg_match('/moddata\/referentiel/',$url_document)){
 			    	// l'URL doit être transformée
-                    $data_r=new Object();
+                    $data_r=new stdClass();
 					$data_r->id = $document_id;
 					$data_r->userid = $userid;
 					$data_r->author = $user_info;

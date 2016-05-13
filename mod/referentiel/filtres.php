@@ -18,7 +18,8 @@
 	// MODIF JF POUR POSTGRES
     $sql_f_select=optional_param('sql_f_select','', PARAM_ALPHA);
 
-	$data_f= new Object(); // parametres de filtrage
+	//$data_f= new stdClass(); // parametres de filtrage
+    $data_f= new stdClass(); // parametres de filtrage
 	
 	// Activites
 	if (isset($f_validation)){

@@ -2,16 +2,8 @@
 // ----------------
 // UTF-8 French
 //
-
-$string['competency_activation'] = 'Les compétences ne sont pas activées sur ce serveur Moodle !';
-$string['export_competencies'] = 'Apprentissage par Compétences et Plans de formation';
-$string['exportcompetencyh'] = 'Exporter le référentiel au format "Competency Frameworks"';
-$string['exportcompetencyh_help'] = 'Générer un fichier CSV pour ré-importation dans les Plan de Formation ["Competency Frameworks"]';
-$string['help_competency'] = 'Générer un fichier au format CSV permettant de ré-importer celui-ci pour la gestion des Plans de formation.';
-
-$string['passdelete'] = 'Supprimer tous les mots de passe';
-$string['passnonexists'] = 'Cette occurrence de référentiel n\'est pas protégée par un mot de passe';
-
+$string['passdelete'] = 'Supprimer tout mot de passe associé à cette occurrence de référentiel';
+$string['passnonexists'] = 'Aucun mot de passe n\'est associé à cette occurrence de référentiel';
 
 $string['notsameoccurrence'] = 'Cette occurrence de référentiel n\'est pas compatible';
 $string['notsameinstance'] = 'Cette instance n\'est pas compatible';
@@ -36,6 +28,7 @@ $string['eventallpedagogydeleted'] = 'Toutes les Pédagogies sont supprimées';
 $string['eventconfigupdated'] = 'Configuration mise à jour';
 $string['eventinstancedeleted'] = 'Instance supprimée';
 $string['eventinstanceupdated'] = 'Instance mise à jour';
+$string['eventinstanceviewed'] = 'Instance affichée';
 $string['eventdomaincreated'] = 'Domaine créé';
 $string['eventdomaindeleted'] = 'Domaine supprimé';
 $string['eventdomainupdated'] = 'Domaine mis à jour';
@@ -949,7 +942,7 @@ $string['creer_documenth_help']= '*        Description du document : Une courte 
 *         Vous pouvez aussi déposer le document dans l\'espace Moodle';
 
 $string['name_instanceh']= 'Titre de l\'Instance ';
-$string['name_instanceh_help']= 'Le titre est celui affiché pour décrire l\'activité, par exemple "Déclarez vos compétences C2i"';
+$string['name_instanceh_help']= 'Le titre est celui affiché pour décrire cette instance de l\'activité Référentiel, par exemple "Dossier de certification C2i des étudiants de Lettre". Soyez précis dans le choix du titre car cela permettra aux utilisateurs (et à l\'administrateur) de distinguer les différentes instances de la même occurrence de référentiel';
 
 $string['formath']= 'Formats  d\'Importation / exportation';
 $string['formath_help']= '* XML est un format textuel de données représentant l\'Information comme une hiérarchies de balises et de données imbriquées. Il permet la sauvegarde et la restauration  de référentiels, d\'activités et de certificats.
@@ -1643,6 +1636,7 @@ $string['check_pass_referentiel'] = 'Saisissez le mot de passe qui protége ce r
 $string['existe_pass_referentiel'] = 'Laissez vide pour conserver le mot de passe actuel.';
 $string['aide_pass_referentiel'] = 'Un mot de passe permet de protéger le référentiel contre toute modification indésirable.';
 $string['pass_referentiel'] = 'Mot de passe';
+
 $string['referentiel_config'] = 'Configuration des instances de référentiel';
 $string['referentiel_impression_autorisee'] = 'Interdire l\'Impression des certificats';
 $string['config_impression_referentiel'] = 'Ce paramètre régit l\'Impression des certificats au niveau du cours.

@@ -104,7 +104,7 @@ global $DB;
 		$DB->update_record("referentiel_accompagnement", $records_a);
     }
 	else{
-        $accompagnement = new object();
+        $accompagnement = new stdClass();
         $accompagnement->accompagnement=$type;
         $accompagnement->ref_instance=$referentiel_instance_id;
         $accompagnement->courseid=$course_id;

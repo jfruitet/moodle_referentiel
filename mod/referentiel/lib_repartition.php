@@ -74,7 +74,7 @@ global $CFG;
                 foreach($t_userids as $teacher){
                     if (in_array($teacher, $teachersids)==false) {
                         // mtrace("\nAJOUTER $teacher->userid");
-						$a = new Object();
+						$a = new stdClass();
 						$a->userid=$teacher->userid;
                         $teachersids[]=$a;
                     }
@@ -125,7 +125,7 @@ function referentiel_intersection_teachers($teachers_repartition, $teachers_acco
         foreach($teachers_accompagnement as $teacher){
             if (in_array($teacher, $teachers_repartition)==true) {
                 // mtrace("\nRETOURNER $teacher->userid");
-				$a = new Object();
+				$a = new stdClass();
 				$a->userid=$teacher->userid;
                 $teachersids[$teacher->userid]->userid=$a;
             }
@@ -265,7 +265,7 @@ global $DB;
 		$DB->update_record("referentiel_repartition", $record_r);
     }
 	else{
-  	 $repartition = new object();
+  	 $repartition = new stdClass();
 	 $repartition->ref_instance=$referentiel_instance_id;
      $repartition->ref_occurrence=$referentiel_occurrence_id;
 	 $repartition->courseid=$course_id;

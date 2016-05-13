@@ -95,7 +95,7 @@
   $sql_filtre_order=optional_param('sql_filtre_order','', PARAM_ALPHA);
   $sql_filtre_user=optional_param('sql_filtre_user','', PARAM_ALPHA);
 
-	$data_filtre= new Object(); // parametres de filtrage
+	$data_filtre= new stdClass(); // parametres de filtrage
 	if (isset($filtre_verrou)){
 			$data_filtre->filtre_verrou=$filtre_verrou;
 	}
@@ -145,7 +145,7 @@
     // exit;
 
 
-    $export_filtre= new Object(); // parametres de filtrage
+    $export_filtre= new stdClass(); // parametres de filtrage
 
 	if (isset($f_promotion)){
 		$export_filtre->f_promotion=$f_promotion;
@@ -227,7 +227,7 @@
 	}
 
     // get display strings
-    $txt = new object;
+    $txt = new stdClass();
     $txt->referentiel = get_string('referentiel','referentiel');
     $txt->download = get_string('download','referentiel');
     $txt->downloadextra = get_string('downloadextra','referentiel');

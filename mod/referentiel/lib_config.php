@@ -1185,7 +1185,7 @@ function referentiel_ref_get_vecteur_config($ref_referentiel_referentiel) {
 // retourne la valeur de configuration globale pour ce referentiel
 global $DB;
 	if (!empty($ref_referentiel_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => "$ref_referentiel_referentiel");
 		$sql="SELECT config FROM {referentiel_referentiel} WHERE id=:refid";
 		$config = $DB->get_record_sql($sql, $params);
@@ -1202,7 +1202,7 @@ function referentiel_get_vecteur_configuration($ref_instance_referentiel) {
 // retourne la valeur de configuration locale pour cette instance de referentiel
 global $DB;
 	if (!empty($ref_instance_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => "$ref_instance_referentiel");
         $sql="SELECT config FROM {referentiel} WHERE id=:refid";
 		$config = $DB->get_record_sql($sql, $params);
@@ -1218,7 +1218,7 @@ function referentiel_ref_get_vecteur_config_imp($ref_referentiel_referentiel) {
 // retourne la valeur de configuration globale pour ce referentiel
 global $DB;
 	if (!empty($ref_referentiel_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => "$ref_referentiel_referentiel");
         $sql="SELECT config_impression FROM {referentiel_referentiel} WHERE id=:refid";
         $config = $DB->get_record_sql($sql, $params);
@@ -1235,7 +1235,7 @@ function referentiel_get_vecteur_configuration_impression($ref_instance_referent
 // retourne la valeur de configuration locale pour cette instance de referentiel
 global $DB;
 	if (!empty($ref_instance_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => "$ref_instance_referentiel");
         $sql="SELECT config_impression FROM {referentiel} WHERE id=:refid";
         $config = $DB->get_record_sql($sql, $params);
@@ -1465,7 +1465,7 @@ function referentiel_ref_get_param_config($ref_referentiel_referentiel, $type='c
 // type config_impression : 'refcert:1;instcert:0;numetu:1;nometu:1;etabetu:0;ddnetu:0;lieuetu:0;adretu:0;detail:1;pourcent:0;compdec:0;compval:1;nomreferent:0;jurycert:1;comcert:0;'
 //
 global $CFG;
-$parametre = new Object();
+$parametre = new stdClass();
 	if (isset($ref_referentiel_referentiel) && ($ref_referentiel_referentiel>0)){
 		if ($type=='config'){
 			$str_config = referentiel_ref_get_vecteur_config($ref_referentiel_referentiel);
@@ -1502,7 +1502,7 @@ function referentiel_get_param_configuration($ref_instance_referentiel, $type='c
 // type config_impression : 'refcert:1;instcert:0;numetu:1;nometu:1;etabetu:0;ddnetu:0;lieuetu:0;adretu:0;detail:1;pourcent:0;compdec:0;compval:1;nomreferent:0;jurycert:1;comcert:0;'
 //
 global $CFG;
-$parametre = new Object();
+$parametre = new stdClass();
 	if (isset($ref_instance_referentiel) && ($ref_instance_referentiel>0)){
 		if ($type=='config'){
 			$str_config = referentiel_get_vecteur_configuration($ref_instance_referentiel);

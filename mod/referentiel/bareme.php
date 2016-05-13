@@ -166,7 +166,7 @@
     //$roles=referentiel_roles_in_instance($referentiel->id);
     //print_object($roles);
     // not any editing functions in module
-    $roles=new Object();
+    $roles=new stdClass();
     $roles->is_guest =''; 
     $roles->is_editor='';
     $roles->is_admin='';

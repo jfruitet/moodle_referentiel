@@ -96,7 +96,7 @@
   // make_upload_directory( "$course->id/$CFG->moddata/referentiel" );
   
     if (empty($exportfilename)) {
-      $exportfilename = "outcomes_".referentiel_default_export_filename($course, $referentiel).'.csv';
+      $exportfilename = "outcomes_".referentiel_default_export_filename($referentiel_referentiel->code_referentiel).'.csv';
     }
 
     $systemcontext = context_system::instance();
@@ -256,7 +256,7 @@ function referentiel_get_outcomes($referentiel_referentiel){
                                         $desc_item=mb_substr($desc_item, 0, strrpos($desc_item," "));
                                         $desc_item.=' (...)';
                                     }
-                                    $outcome= new object();
+                                    $outcome= new stdClass();
                                     $outcome->name=$code_referentiel.' '.$code_item.' :: '.$desc_item;
                                     $outcome->shortname=$code_item;
                                     $outcome->description=$description_item;
@@ -279,7 +279,7 @@ function referentiel_get_outcomes($referentiel_referentiel){
 function referentiel_get_scale_info($refrefid){
 global $CFG;
 global $DB;
-    $scale_info = new Object();
+    $scale_info = new stdClass();
 	// Default values
 	$scale_info->name = get_string('nom_bareme','referentiel');
     $scale_info->grades = get_string('bareme','referentiel');

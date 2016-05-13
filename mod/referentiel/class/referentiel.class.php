@@ -140,7 +140,7 @@ class referentiel {
         }
 
         // valeurs par defaut
-        $this->referentiel= new Object();
+        $this->referentiel= new stdClass();
         
         $this->referentiel->name="";
         $this->referentiel->description_instance="";
@@ -1444,7 +1444,7 @@ function get_vecteur_config_occurrence() {
 // retourne la valeur de configuration globale pour ce referentiel
 global $DB;
 	if (!empty($ref_referentiel_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => "$this->referentiel_referentiel");
 		$sql="SELECT config FROM {referentiel_referentiel} WHERE id=:refid";
 		$config = $DB->get_record_sql($sql, $params);
@@ -1461,7 +1461,7 @@ function get_vecteur_config_imp_occurrence() {
 // retourne la valeur de configuration globale pour ce referentiel
 global $DB;
 	if (!empty($this->referentiel_referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => $this->referentiel_referentiel->id);
         $sql="SELECT config_impression FROM {referentiel_referentiel} WHERE id=:refid";
         $config = $DB->get_record_sql($sql, $params);
@@ -1477,7 +1477,7 @@ function get_vecteur_config_instance() {
 // retourne la valeur de configuration locale pour cette instance de referentiel
 global $DB;
 	if (!empty($this->referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => $this->referentiel->id);
         $sql="SELECT config FROM {referentiel} WHERE id=:refid";
 		$config = $DB->get_record_sql($sql, $params);
@@ -1493,7 +1493,7 @@ function get_vecteur_config_imp_instance() {
 // retourne la valeur de configuration locale pour ce referentiel
 global $DB;
 	if (!empty($this->referentiel)){
-		$config = new object();
+		$config = new stdClass();
 		$params= array("refid" => $this->referentiel->id);
         $sql="SELECT config_impression FROM {referentiel} WHERE id=:refid";
         $config = $DB->get_record_sql($sql, $params);
@@ -2226,7 +2226,7 @@ function can_config() {
 // verifier si autorisation de modification de la configuration au niveau de l'instance
     global $CFG;
 
-    $vecteur_config= new Object();
+    $vecteur_config= new stdClass();
 	$vecteur_config->config_hierarchy=0;
 	$vecteur_config->config_scol=0;
     $vecteur_config->config_light=0;

@@ -356,7 +356,7 @@ $sql='';
 					//echo "<br />DEBUG : activite.php :: 375 UTILISE BAREME<br />FORMULAIRE INPUT<br />\n";
 					//print_object($form);
 
-                    $form2= new Object();
+                    $form2= new stdClass();
                     $form2->action='modifier_activite';
                     $form2->activite_id=$form['activite_id_'.$id_activite];
         		    $form2->type_activite=$form['type_activite_'.$id_activite];

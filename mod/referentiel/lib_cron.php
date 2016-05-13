@@ -412,7 +412,7 @@ mtrace("DEBUT CRON REFERENTIEL CERTIFICATS");
 
                 // Does the user want this post in a digest?  If so postpone it for now.
                 if ($userto->maildigest > 0) {
-                    $queue = new object();
+                    $queue = new stdClass();
                     $queue->userid       = $userto->id;
                     $queue->activiteid   = $certificat->id;
                     $queue->timemodified = $certificat->date_decision;
@@ -583,7 +583,7 @@ mtrace("DEBUT CRON REFERENTIEL CERTIFICATS");
 
                 $postsubject = get_string('digestmailsubject', 'referentiel', format_string($site->shortname, true));
 
-                $headerdata = new object();
+                $headerdata = new stdClass();
                 $headerdata->sitename = format_string($site->fullname, true);
                 $headerdata->userprefs = $CFG->wwwroot.'/user/edit.php?id='.$userid.'&amp;course='.$site->id;
 
@@ -682,7 +682,7 @@ mtrace("DEBUT CRON REFERENTIEL CERTIFICATS");
 
                         if ($userto->maildigest == 2) {
                             // Subjects only
-                            $by = new object();
+                            $by = new stdClass();
                             $by->name = fullname($userfrom);
                             $by->date = userdate($post->date_decision);
                             if (!empty($groupname)){
@@ -1081,7 +1081,7 @@ if (REFERENTIEL_DEBUG){
 
             // reset the caches
             foreach ($coursemodules as $coursemoduleid => $unused) {
-                $coursemodules[$coursemoduleid]->cache       = new object();
+                $coursemodules[$coursemoduleid]->cache       = new stdClass();
                 $coursemodules[$coursemoduleid]->cache->caps = array();
                 unset($coursemodules[$coursemoduleid]->uservisible);
             }
@@ -1236,7 +1236,7 @@ if (REFERENTIEL_DEBUG){
 
                 // Does the user want this post in a digest?  If so postpone it for now.
                 if ($userto->maildigest > 0) {
-                    $queue = new object();
+                    $queue = new stdClass();
                     $queue->userid       = $userto->id;
                     $queue->activiteid   = $activite->id;
                     // A MODIFIER   pour tenir compte de toutes les combinaisons de dates possibles
@@ -1462,7 +1462,7 @@ if (REFERENTIEL_DEBUG){
 
                 $postsubject = get_string('digestmailsubject', 'referentiel', format_string($site->shortname, true));
 
-                $headerdata = new object();
+                $headerdata = new stdClass();
                 $headerdata->sitename = format_string($site->fullname, true);
                 $headerdata->userprefs = $CFG->wwwroot.'/user/edit.php?id='.$userid.'&amp;course='.$site->id;
 
@@ -1577,7 +1577,7 @@ if (REFERENTIEL_DEBUG){
 
                                 if ($userto->maildigest == 2) {
                                     // Subjects only
-                                    $by = new object();
+                                    $by = new stdClass();
                                     $by->name = fullname($userfrom);
                                     $by->date = userdate($post->date_modif);
                                     if (!empty($groupname)){
@@ -1831,7 +1831,7 @@ if (REFERENTIEL_DEBUG){
 
             // reset the caches
             foreach ($coursemodules as $coursemoduleid => $unused) {
-                $coursemodules[$coursemoduleid]->cache       = new object();
+                $coursemodules[$coursemoduleid]->cache       = new stdClass();
                 $coursemodules[$coursemoduleid]->cache->caps = array();
                 unset($coursemodules[$coursemoduleid]->uservisible);
             }
@@ -1889,7 +1889,7 @@ if (REFERENTIEL_DEBUG){
 
                 // Does the user want this post in a digest?  If so postpone it for now.
                 if ($userto->maildigest > 0) {
-                    $queue = new object();
+                    $queue = new stdClass();
                     $queue->userid       = $userto->id;
                     $queue->activiteid   = $task->id;
                     $queue->timemodified = $task->date_modif;
@@ -2072,7 +2072,7 @@ if (REFERENTIEL_DEBUG){
 
                 $postsubject = get_string('digestmailsubject', 'referentiel', format_string($site->shortname, true));
 
-                $headerdata = new object();
+                $headerdata = new stdClass();
                 $headerdata->sitename = format_string($site->fullname, true);
                 $headerdata->userprefs = $CFG->wwwroot.'/user/edit.php?id='.$userid.'&amp;course='.$site->id;
 
@@ -2155,7 +2155,7 @@ if (REFERENTIEL_DEBUG){
 
                         if ($userto->maildigest == 2) {
                             // Subjects only
-                            $by = new object();
+                            $by = new stdClass();
                             $by->name = fullname($userfrom);
                             $by->date = userdate($post->date_modif);
                             $posttext .= "\n".format_string($post->type_task,true).' '.get_string("bynameondate", "referentiel", $by);
@@ -2325,7 +2325,7 @@ if ($userfrom && $course){
 
     $fullnamefrom = fullname($userfrom, $viewfullnamesfrom);
 
-    $by = new object();
+    $by = new stdClass();
     $by->name = '<a href="'.$CFG->wwwroot.'/user/view.php?id='.$userfrom->id.'&amp;course='.$course->id.'">'.$fullnamefrom.'</a>';
 
     if ($type==TYPE_CERTIFICAT){

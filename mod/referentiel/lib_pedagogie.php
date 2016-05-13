@@ -744,7 +744,7 @@ function referentiel_add_pedago($form){
 // puis dans refrentiel_a_user_pedago
 // retourne l'id de l'objet cree
 global $DB;
-    $record=new object();
+    $record=new stdClass();
     $record->date_cloture = $form->date_cloture;
     $record->promotion = $form->promotion;
     $record->formation= ($form->formation);
@@ -771,7 +771,7 @@ function referentiel_update_pedago($form){
 // retourne true or false
 global $DB;
     if (!empty($form->pedago_id)){
-        $record=new object();
+        $record=new stdClass();
         $record->id = $form->pedago_id;
         $record->date_cloture = $form->date_cloture;
         $record->promotion = $form->promotion;
@@ -853,7 +853,7 @@ global $DB;
         if ($recs){
             foreach($recs as $rec){
                 if (!$rec){
-                    $record=new object();
+                    $record=new stdClass();
                     $record->userid=$userid;
                     $record->refrefid=$refrefid;
                     $record->refpedago=$refpedago;
@@ -1183,7 +1183,7 @@ function referentiel_set_association_user_pedago($userid, $refrefid, $pedago_id)
 global $DB;
 $asso_id=0;
     if ( $userid && $refrefid && $pedago_id){
-        $asso = new object();
+        $asso = new stdClass();
         $asso->refrefid=$refrefid;
         $asso->userid=$userid;
         $asso->refpedago=$pedago_id;
@@ -2014,7 +2014,7 @@ global $CFG;
 global $DB;
     if ($refrefid && $courseid){
         // objet
-        $rec_o = new object();
+        $rec_o = new stdClass();
         $rec_o->courseid= $courseid;
         $rec_o->refrefid= $refrefid;
         $rec_o->tab_users= $ser_t_users;

@@ -215,7 +215,7 @@
     function referentiel_get_size_data_moodle_1_9_api($records_users, $referentiel_referentiel_id){
     // API Moodle 1.9
         global $CFG;
-        $o = new object();
+        $o = new stdClass();
         
         $o->size=0;
         $o->nfile=0;
@@ -361,7 +361,7 @@
         global $CFG;
         require_once($CFG->libdir.'/filelib.php');
 
-        $o = new object();
+        $o = new stdClass();
 
         $o->size=0;
         $o->nfile=0;

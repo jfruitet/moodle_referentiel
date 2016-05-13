@@ -329,7 +329,7 @@
 
                 foreach ($form['tcertificat_id'] as $id_certificat){
                     // echo "<br />DEBUG :: CERTIFICAT.PHP :: 422 <br />ID :: ".$id_certificat."\n";
-                    $form2= new Object();
+                    $form2= new stdClass();
                     $form2->action='modifier_certificat';
                     $form2->certificat_id=$form['certificat_id_'.$id_certificat];
                     $form2->commentaire_certificat=$form['commentaire_certificat_'.$id_certificat];

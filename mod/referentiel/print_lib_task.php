@@ -120,7 +120,7 @@ function referentiel_print_liste_documents_task($taskid, $auteurid, $context){
 						// affichage de l'url
 						if (preg_match('/moddata\/referentiel/',$url_consigne)){
 			    			// l'URL doit être transformée
-                    		$data_r=new Object();
+                    		$data_r=new stdClass();
 							$data_r->id = $consigne_id;
 							$data_r->userid = $auteurid;
 							$data_r->author = referentiel_get_user_info($auteurid);
@@ -228,7 +228,7 @@ function referentiel_get_content_task($taskid, $all=false){
 						// affichage de l'url
 						if (preg_match('/moddata\/referentiel/',$url_consigne)){
 			    			// l'URL doit être transformée
-                    		$data_r=new Object();
+                    		$data_r=new stdClass();
 							$data_r->id = $consigne_id;
 							$data_r->userid = $auteurid;
 							$data_r->author = referentiel_get_user_info($auteurid);
@@ -553,7 +553,7 @@ function referentiel_print_task_detail($record_t, $context, $detail=true, $numer
 					// affichage de l'url
 					if (preg_match('/moddata\/referentiel/',$url_consigne)){
 			    			// l'URL doit être transformée
-                    		$data_r=new Object();
+                    		$data_r=new stdClass();
 							$data_r->id = $consigne_id;
 							$data_r->userid = $auteurid;
 							$data_r->author = referentiel_get_user_info($auteurid);							

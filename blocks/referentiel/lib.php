@@ -122,7 +122,7 @@ stdClass Object
 // -----------------------
 function referentiel_scale_2_bareme($scale){
     if (!empty($scale)){
-        $bareme= new Object();
+        $bareme= new stdClass();
         $bareme->scaleid=$scale->id;
         $bareme->name=$scale->name;
         $bareme->scale=$scale->scale;
@@ -201,7 +201,7 @@ global $CFG, $USER, $DB;
         //print_object($formdata);
         //echo "<br />EXIT<br />\n";
 		//exit;
-        $occurrence= new Object();
+        $occurrence= new stdClass();
 		$occurrence->name=$formdata->name;
     	$occurrence->code_referentiel=$formdata->code_referentiel;
     	$occurrence->description_referentiel=$formdata->description_referentiel;
@@ -241,7 +241,7 @@ global $CFG, $USER, $DB;
 				foreach($t_domainids as $D_id){
 					if (!empty($D_id)){// && is_int($D_id)){
 	                    $error=false;
-						$rec=new Object();
+						$rec=new stdClass();
                    	    $rec->occurrence=$occurrence->id;   // mandatory
 
                         $s='new_code_domaine_'.$D_id;
@@ -315,7 +315,7 @@ global $CFG, $USER, $DB;
 					// echo "<br />COMPETENCY ID:$C_id\n";
 					if (!empty($C_id)){// && is_int($C_id)){
 	                    $error=false;
-						$rec=new Object();
+						$rec=new stdClass();
                         $rec->reference_id=$occurrence->id; // mandatory for protocole management
 						$s='new_ref_domaine_'.$C_id;
 						if (isset($formdata->$s)){
@@ -392,7 +392,7 @@ global $CFG, $USER, $DB;
                     //echo "<br />ITEM ID:$I_id\n";
 					if (!empty($I_id)){// && is_int($I_id)){
 	                    $error=false;
-						$rec=new Object();
+						$rec=new stdClass();
                         $rec->occurrence=$occurrence->id; // mandatory for protocole management
 						$s='new_ref_competence_'.$I_id;
 						if (isset($formdata->$s)){
@@ -467,7 +467,7 @@ global $CFG, $USER, $DB;
 						if (!empty($formdata->$s)){
 							// Traiter cet objet
 	                    	$error=false;
-							$rec=new Object();
+							$rec=new stdClass();
     	    	            $rec->domaine_id=$D_id;
 
             	            $s='ref_referentiel_'.$D_id;
@@ -551,7 +551,7 @@ global $CFG, $USER, $DB;
 							// Traiter cet objet
 
 	                    $error=false;
-						$rec=new Object();
+						$rec=new stdClass();
         	            $rec->competence_id=$C_id;
                         $rec->reference_id=$occurrence->id; // mandatory for protocole management
 						$s='ref_domaine_'.$C_id;
@@ -635,7 +635,7 @@ global $CFG, $USER, $DB;
 							// Traiter cet objet
 
 	                    $error=false;
-						$rec=new Object();
+						$rec=new stdClass();
         	            $rec->item_id=$I_id;
 						$s='ref_competence_'.$I_id;
 						if (isset($formdata->$s)){

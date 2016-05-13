@@ -1123,7 +1123,7 @@ function xmldb_referentiel_upgrade($oldversion) {
                 foreach ($occurrences as $occurrence){
                         if (!empty($occurrence) && !empty($occurrence->id)){
                             // mettre a jour le protocole
-                            $protocole = new object();
+                            $protocole = new stdClass();
                             $protocole->ref_occurrence=$occurrence->id;
                             $protocole->seuil_referentiel=$occurrence->seuil_certificat;
                             // initialiser les items obligatoires à 0

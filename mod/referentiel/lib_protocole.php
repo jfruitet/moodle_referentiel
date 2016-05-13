@@ -95,7 +95,7 @@ function referentiel_set_domaine_competence_item($protocole){
 global $DB;
 
 /*
-                $protocole = new object();
+                $protocole = new stdClass();
                 $protocole->ref_occurrence=$occurrence->id;
                 $protocole->seuil_referentiel=$occurrence->seuil_certificat;
                 $protocole->minima_referentiel=$occurrence->minima_certificat;
@@ -298,7 +298,7 @@ global $DB;
             if (!empty($occurrence)){
                 // rechercher dans les tables domaine, competence, item
                 // mettre a jour le protocole
-                $protocole = new object();
+                $protocole = new stdClass();
                 $protocole->ref_occurrence=$occurrence->id;
                 $protocole->seuil_referentiel=$occurrence->seuil_certificat;
                 $protocole->minima_referentiel=$occurrence->minima_certificat;

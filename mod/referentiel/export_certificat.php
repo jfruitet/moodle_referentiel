@@ -87,7 +87,7 @@
     // DEBUG
     // print_object($data_filtre);
     // exit;
-    $export_filtre= new Object(); // parametres de filtrage
+    $export_filtre= new stdClass(); // parametres de filtrage
 
 	if (isset($f_promotion)){
 		$export_filtre->f_promotion=$f_promotion;
@@ -176,7 +176,7 @@
     }
 
     // get display strings
-    $txt = new object;
+    $txt = new stdClass();
     $txt->choisir = get_string('choisir','referentiel');
     $txt->condense = get_string('format_condense','referentiel');
     $txt->reduit1 = get_string('format_reduit1','referentiel');

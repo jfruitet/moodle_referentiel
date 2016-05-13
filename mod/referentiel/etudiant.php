@@ -227,7 +227,7 @@
             foreach ($form['tetudiant_id'] as $id_etudiant){
                     // echo "<br />ID :: ".$id_domaine."\n";
                     // exit;
-                    $record= new Object();
+                    $record= new stdClass();
                     $record->id=$id_etudiant;
         		    $record->num_etudiant=$form['num_etudiant_'.$id_etudiant];
         		    $record->ddn_etudiant=$form['ddn_etudiant_'.$id_etudiant];

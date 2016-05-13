@@ -110,7 +110,7 @@ global $scales;
         		if (!empty($notation->userid) && !empty($notation->courseid)){
                     if (!preg_match("/ ".$notation->userid."\,/", $users_list)){
                         $users_list .= " $notation->userid,";
-                        $user=new Object();
+                        $user=new stdClass();
                         $user->userid = $notation->userid;
                         $user->courses = array();
                         $user->course_list = '';
@@ -119,7 +119,7 @@ global $scales;
 
                     if (!preg_match("/ ".$notation->courseid."\,/", $users[$notation->userid]->course_list)){
                         $users[$notation->userid]->course_list .= " $notation->courseid,";
-                        $course=new Object();
+                        $course=new stdClass();
                         $course->courseid = $notation->courseid;
                         $course->referentiel_list = '';
                         $course->referentiels = array();
@@ -128,7 +128,7 @@ global $scales;
 
                     if (!preg_match("/ ".$notation->referentiel_instanceid."\,/", $users[$notation->userid]->courses[$notation->courseid]->referentiel_list)){
                             $users[$notation->userid]->courses[$notation->courseid]->referentiel_list = " $notation->referentiel_instanceid,";
-                            $referentiel = new object();
+                            $referentiel = new stdClass();
                             $referentiel->referentiel_instanceid = $notation->referentiel_instanceid;
                             $referentiel->ref_referentiel = $notation->ref_referentiel;
                             $referentiel->module_list ='';
@@ -140,7 +140,7 @@ global $scales;
                     if ((empty($users[$notation->userid]->courses[$notation->courseid]->referentiels[$notation->referentiel_instanceid]->module_list))
                             || (!preg_match("/ ".$notation->module.":".$notation->moduleinstance."\,/", $users[$notation->userid]->courses[$notation->courseid]->referentiels[$notation->referentiel_instanceid]->module_list))){
                             $users[$notation->userid]->courses[$notation->courseid]->referentiels[$notation->referentiel_instanceid]->module_list .= " $notation->module:$notation->moduleinstance,";
-                            $module = new object();
+                            $module = new stdClass();
                             $module->modulename = $notation->module;
                             $module->moduleinstance = $notation->moduleinstance;
                             $module->teacherid = $notation->teacherid;    // MODIF JF 2012/01/31
@@ -220,7 +220,7 @@ global $scales;
 								print_r($m);
                         	}
 
-                        	$activite= new Object();
+                        	$activite= new stdClass();
                         	$activite->type_activite='['.get_string('outcome_type', 'referentiel').' '.get_string('modulename', $m->type).' '.$m->ref_activite.'] '.get_string('outcome_date','referentiel').' '.$m->userdate;
                         	$activite->description_activite=get_string('outcome_description','referentiel', $m);
                         	$activite->competences_activite='';
@@ -349,7 +349,7 @@ function referentiel_get_scale($scaleid){
     else {  
       $scale_r = $DB->get_record("scale", array("id" => "$scaleid"));
       if ($scale_r){
-        $scale = new Object();
+        $scale = new stdClass();
         $scale->scaleid = $scaleid;
         $scale->scale = $scale_r->scale;
         $tscales=explode(',',$scale_r->scale);
@@ -493,7 +493,7 @@ global $DB;
     $mlink = $CFG->wwwroot.'/mod/'.$modulename.'/view.php?id='.$cm->id;
   }
 
-  $m=new Object();
+  $m=new stdClass();
   $m->id=$mid;
   $m->type=$modulename;
   $m->instance=$moduleinstance;
@@ -565,7 +565,7 @@ mdl_assign_plugin_config
 */
 global $DB;
 
-    $mdata=new Object();
+    $mdata=new stdClass();
     $mdata->submission='';
     $mdata->comment=array();
     $mdata->feedback='';
@@ -691,7 +691,7 @@ INSERT INTO `mdl24_mahara_portfolio` (`id`, `page`, `host`, `userid`, `title`, `
                                 if ($maharaobject = $DB->get_record("assignsubmission_mahara", array("assignment" => $m->id, "submission" => $as->id))){ 
                                 // Look for hostid                                                                        plugin	subtype	name
                                     if ($apmaharahost = $DB->get_record("assign_plugin_config", array("assignment" => $m->id, "plugin" => "mahara", "subtype" => "assignsubmission", "name" => "mnethostid" ))){
-                                        $maharalink= new Object();
+                                        $maharalink= new stdClass();
                                         $maharalink->page=$maharaobject->viewid;
                                         $maharalink->host=$apmaharahost->value;
                                         $maharalink->userid=$userid;
@@ -866,7 +866,7 @@ CREATE TABLE mdl_grade_outcomes (
 
         	foreach ($r_outcomes as $r_outcome){
 				// selectionner les items (activites utilisant ces outcomes)
-				$a = new Object();
+				$a = new stdClass();
                 $a->id=$r_outcome->id;
                 $a->shortname=$r_outcome->shortname;
                 $a->scaleid=$r_outcome->scaleid;
@@ -1047,7 +1047,7 @@ CREATE TABLE mdl_grade_outcomes (
 																		}
 
 																		// stocker l'activite pour traitement
-						                			      				$notation=new Object();
+						                			      				$notation=new stdClass();
         	            					  							$notation->referentiel_instanceid=$r_instance->instanceid;
 	                                                                    $notation->courseid=$t_items[$r_item->id]->courseid;
 									                	    			$notation->ref_referentiel=$r_occurrence->ref_referentiel;
@@ -1243,7 +1243,7 @@ global $DB;
 	        			    		}
                                 	$url=addslashes(referentiel_get_mahara_link($alink));
 	                                if (!$document_old=$DB->get_record("referentiel_document", array("url_document" => $url, "ref_activite" => $activite_id))){
-					        	    	$document = new object();
+					        	    	$document = new stdClass();
         				    			$document->url_document=$url;
 	        	    					$document->type_document=addslashes(substr(get_string('mahara', 'referentiel'),0,20));
 		        	    				$document->description_document=get_string('mahara','referentiel');
@@ -1271,7 +1271,7 @@ global $DB;
 	        			    		}
                                 	$url=addslashes(referentiel_url_file($afile));
 	                                if (!$document_old=$DB->get_record("referentiel_document", array("url_document" => $url, "ref_activite" => $activite_id))){
-					        	    	$document = new object();
+					        	    	$document = new stdClass();
         				    			$document->url_document=$url;
 	        	    					$document->type_document=addslashes(substr(get_string('document', 'referentiel'),0,20));
 		        	    				$document->description_document=get_string('assignementdoc','referentiel');
@@ -1364,7 +1364,7 @@ global $DB;
 				(isset($m->name) && !empty($m->description))
 			)
 	     ){
-            $document = new object();
+            $document = new stdClass();
             $document->url_document=$m->link;
             $document->type_document=addslashes(substr(get_string('modulename', $m->type),0,20));
             $document->description_document=get_string('assignementdoc','referentiel');; // addslashes($m->description);
@@ -1383,7 +1383,7 @@ global $DB;
                 			mtrace("\nDEBUG :: grade/cron_outcomes/referentiel_activite_outcomes :: 1263 :: link DOCUMENT \n");
 		                	print_r($alink);
 	        		    }
-			            $document = new object();
+			            $document = new stdClass();
         			    $document->url_document=addslashes(referentiel_get_mahara_link($alink));
             			$document->type_document=addslashes(substr(get_string('mahara', 'referentiel'),0,20));
             			$document->description_document=get_string('mahara','referentiel'); // addslashes($m->description);
@@ -1403,7 +1403,7 @@ global $DB;
                 			mtrace("\nDEBUG :: grade/cron_outcomes/referentiel_activite_outcomes :: 1216 :: FILE DOCUMENT \n");
 		                	print_r($afile);
 	        		    }
-			            $document = new object();
+			            $document = new stdClass();
         			    $document->url_document=addslashes(referentiel_url_file($afile));
             			$document->type_document=addslashes(substr(get_string('document', 'referentiel'),0,20));
             			$document->description_document=get_string('assignementdoc','referentiel'); // addslashes($m->description);
@@ -1421,7 +1421,7 @@ global $DB;
         //
         if (isset($activite_id) && ($activite_id>0)){
             //
-            $r_a_outcomes=new object();
+            $r_a_outcomes=new stdClass();
             $r_a_outcomes->activiteid=$activite_id;
             $r_a_outcomes->ref_course=$activite->ref_course;
             $r_a_outcomes->ref_instance=$activite->ref_instance;

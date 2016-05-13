@@ -81,7 +81,7 @@
 */
 
 	$sql_filtre_where='';
-    $export_filtre= new Object(); // parametres de filtrage
+    $export_filtre= new stdClass(); // parametres de filtrage
 
 	if (isset($f_promotion)){
 		$export_filtre->f_promotion=$f_promotion;

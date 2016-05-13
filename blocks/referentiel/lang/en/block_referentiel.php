@@ -22,7 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright 2013 onwards Jean Fruitet  {@link http://ww.univ-nantes.fr}
  */
-
+$string['export_competencies'] = 'Competency Based Education and Learning Plans';
+$string['exportcompetencyh'] = 'Export the skills repository as a CSV file for Competency Frameworks & Learning Plans';
+$string['exportcompetencyh_help'] = 'This file may be imported in Competency tool for Learning Plans ["Competency Frameworks"]';
+$string['help_competency'] = 'Export all the domains, competencies and items as a CSV file comma separated for Learning Plans management.';
 
 $string['passdelete'] = 'Erase any password';
 

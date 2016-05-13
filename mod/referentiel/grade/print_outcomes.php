@@ -137,7 +137,7 @@ global $DB;
     $mlink = $CFG->wwwroot.'/mod/'.$modulename.'/view.php?id='.$cm->id;
   }
 
-  $m=new Object();
+  $m=new stdClass();
   $m->id=$module->id;
   $m->type=$modulename;
   $m->instance=$moduleinstance;
@@ -281,7 +281,7 @@ global $scales;
                 foreach($r_outcomes as $r_outcome){
 
                     if (!isset($objectifs[$r_outcome->id])){
-                        $objectifs[$r_outcome->id]=new Object();
+                        $objectifs[$r_outcome->id]=new stdClass();
                         $objectifs[$r_outcome->id]->id=$r_outcome->id;
                         $objectifs[$r_outcome->id]->shortname=$r_outcome->shortname;
                         $objectifs[$r_outcome->id]->fullname=$r_outcome->fullname;
@@ -328,7 +328,7 @@ global $scales;
                                     echo "<br />\n";
                                 }
                                 // stocker l'activite pour traitement
-                                $notation=new Object();
+                                $notation=new stdClass();
                                 $notation->referentiel_instanceid=$r_referentiel->instanceid;
                                 $notation->courseid=$r_referentiel->courseid;
                                 $notation->ref_referentiel=$r_referentiel->ref_referentiel;
