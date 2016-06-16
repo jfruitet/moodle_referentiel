@@ -1,21 +1,21 @@
-moodle_referentiel_m27
-======================
+moodle_referentiel
+==================
 
-Referentiel plugin (mod / block / report) for Moodle 2.7 and further
+Referentiel plugin (mod / block / report) for Moodle 3.1 and further
 
-This version works well with Moodle 2.8 and 2.9
+This version works well with Moodle 3.1
 
 ## Module Moodle - Référentiel / Skills repository - Documentation
 
 jean.fruitet@univ-nantes.fr, jean.fruitet@free.fr, 
 
-2007/2015
+2007/2016
 
 Type: Activity Module
 
-Requires: Moodle 2.7
+Requires: Moodle 3.1
 
-Avalaible: Moodle 2.7, 2.8, 2.9
+Other versions avalaible: Moodle 2.7, 2.8, 2.9, 3.0
 
 Status: Contributed
 
