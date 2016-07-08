@@ -1,7 +1,7 @@
 moodle_referentiel
 ==================
 
-Referentiel plugin (mod / block / report) for Moodle  2.9, 3.0 (and maybe further ?)
+Referentiel plugin (mod / block / report) for Moodle  2.9, 3.0, 3.1 (and surely not further!)
 
 ## Module Moodle - Référentiel / Skills repository - Documentation
 
@@ -12,13 +12,28 @@ jean.fruitet@free.fr (après 2015)
 
 Type: Activity Module
 
-Requires: Moodle 2.9
+"master" branch requires Moodle 3.1
+
+"moodle29" branch requires Moodle 2.9
 
 Avalaible: Moodle 2.9, 3.0, 3.1
 
 Status: Contributed
 
-Maintainer(s): jean.fruitet@univ-nantes.fr
+Maintainer(s): jean.fruitet@univ-nantes.fr (until January 2016) - jean.fruitet@free.fr
+
+**NEW FEATURE with Moodle 3.1 VERSION**
+
+You can now export a skills repository occurrence and scale to Moodle Competency framework CSV format file 
+Go to *Referentiel / Export -> Export to Competency framework*
+
+**NOUVEAUTE avec la version pour Moodle 3.1**
+
+Vous pouvez désormais exporter une occurrence de référentiel et son barème vers fichier au format CSV de l'implantation des compétences dans le noyau Moodle.
+
+Aller à *Referentiel / Exporter -> Exporter vers Competency framework*
+
+Si vous avez de plus installé le plugin Import / Export de rférentiels de compétences cela vous évitera d'avoir à ressaisir tous vos réféentiels maison...
 
 ### PRESENTATION (Français)
 
