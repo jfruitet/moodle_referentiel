@@ -25,15 +25,18 @@ Maintainer(s): jean.fruitet@univ-nantes.fr (until January 2016) - jean.fruitet@f
 **NEW FEATURE with Moodle 3.1 VERSION**
 
 You can now export a skills repository occurrence and scale to Moodle Competency framework CSV format file 
-Go to *Referentiel / Export -> Export to Competency framework*
+
+Go to *Skill repository / Export -> Export to Competency framework*
 
 **NOUVEAUTE avec la version pour Moodle 3.1**
 
-Vous pouvez désormais exporter une occurrence de référentiel et son barème vers fichier au format CSV de l'implantation des compétences dans le noyau Moodle.
+Vous pouvez désormais exporter une occurrence de référentiel et son barème vers un fichier au format CSV de l'implantation des compétences dans le noyau Moodle.
 
 Aller à *Referentiel / Exporter -> Exporter vers Competency framework*
 
-Si vous avez de plus installé le plugin Import / Export de rférentiels de compétences cela vous évitera d'avoir à ressaisir tous vos réféentiels maison...
+Si vous avez de plus installé le plugin *Importer / Exporter un référentiel de compétences* dispible dans la distribution offcielle de plugin pour l'administrateur 
+[https://moodle.org/plugins/tool_lpimportcsv] 
+cela vous évitera d'avoir à ressaisir tous vos référentiels maison...
 
 ### PRESENTATION (Français)
 
