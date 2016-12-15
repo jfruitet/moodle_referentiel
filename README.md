@@ -1,12 +1,12 @@
 moodle_referentiel
 ==================
 
-Referentiel plugin (mod / block / report) for Moodle  2.9, 3.0, 3.1 (and surely not further!)
+Referentiel plugin (mod / block / report) for Moodle  2.9, 3.0, 3.1, 3.2 (and surely further!)
 
 ## Module Moodle - Référentiel / Skills repository - Documentation
 
-jean.fruitet@univ-nantes.fr   (jusqu'en décembre 2015)
-jean.fruitet@free.fr (après 2015)
+jean.fruitet@univ-nantes.fr   (jusqu'en décembre / until december 2015)
+jean.fruitet@free.fr (après / after 2015)
 
 2007/2016
 
@@ -16,7 +16,7 @@ Type: Activity Module
 
 "moodle29" branch requires Moodle 2.9
 
-Avalaible: Moodle 2.9, 3.0, 3.1
+Avalaible: Moodle 2.9, 3.0, 3.1, 3.2
 
 Status: Contributed
 
